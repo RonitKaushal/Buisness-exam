@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EBD Answer Notebook - Entrepreneurship (5 Marks Answers)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&family=Patrick+Hand&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fffdf7; --rule:#cfdcee; --margin:#e57373; --ink:#16213e; --ink2:#0b1026;
+  --red:#c62828; --pencil:#5b6070; --hl:#fff3a3;
+  --lh:32px; --off:-7px;
+  --hand:'Patrick Hand','Segoe Print','Comic Sans MS',cursive;
+  /* vercel-ish chrome */
+  --v-bg:#000; --v-bg2:#0a0a0a; --v-bg3:#111; --v-line:#1f1f1f; --v-line2:#2e2e2e;
+  --v-text:#ededed; --v-muted:#a1a1a1; --v-dim:#707070;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:#000;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ================= Vercel-style top bar ================= */
+.topbar{position:sticky;top:0;z-index:60;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;
+  background:rgba(0,0,0,.8);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--v-line);font-family:'Geist',Inter,sans-serif;color:var(--v-text)}
+.iconbtn{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;
+  border:1px solid var(--v-line2);background:transparent;color:var(--v-text);cursor:pointer;transition:background .15s,border-color .15s}
+.iconbtn:hover{background:#1a1a1a;border-color:#3d3d3d}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.2px}
+.logo svg{display:block}
+.crumb-sep{color:#3a3a3a;font-size:20px;font-weight:300}
+.crumb{color:var(--v-muted);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
+.topbar .spacer{flex:1}
+.kbtn{display:flex;align-items:center;gap:10px;height:34px;padding:0 8px 0 12px;border-radius:6px;border:1px solid var(--v-line2);
+  background:var(--v-bg2);color:var(--v-dim);font-size:13.5px;cursor:pointer;min-width:220px;font-family:inherit}
+.kbtn:hover{border-color:#3d3d3d;color:var(--v-muted)}
+.kbd{margin-left:auto;font-family:'Geist Mono',monospace;font-size:11px;color:var(--v-muted);border:1px solid var(--v-line2);
+  border-radius:4px;padding:1px 5px;background:#000}
+.vbtn{height:34px;padding:0 12px;border-radius:6px;border:1px solid var(--v-line2);background:transparent;color:var(--v-text);
+  font-size:13.5px;font-weight:500;cursor:pointer;font-family:'Geist',Inter,sans-serif;transition:background .15s}
+.vbtn:hover{background:#1a1a1a}
+.vbtn.primary{background:#ededed;color:#000;border-color:#ededed}
+.vbtn.primary:hover{background:#fff}
+
+/* ================= Drawer (closed by default) ================= */
+.scrim{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;left:0;bottom:0;z-index:80;width:340px;max-width:88vw;background:var(--v-bg2);border-right:1px solid var(--v-line);
+  transform:translateX(-102%);transition:transform .25s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;
+  font-family:'Geist',Inter,sans-serif;color:var(--v-text);box-shadow:0 0 0 1px rgba(255,255,255,.02),24px 0 60px rgba(0,0,0,.6)}
+body.nav-open .drawer{transform:none}
+body.nav-open .scrim{opacity:1;pointer-events:auto}
+.dhead{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 16px;border-bottom:1px solid var(--v-line)}
+.dsec{padding:14px 16px;border-bottom:1px solid var(--v-line)}
+.dlabel{font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--v-dim);margin:0 0 8px;font-weight:500}
+.vinput{width:100%;height:36px;border-radius:6px;border:1px solid var(--v-line2);background:#000;color:var(--v-text);
+  padding:0 10px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+.vinput:focus{border-color:#555;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
+select.vinput{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#888 50%),linear-gradient(135deg,#888 50%,transparent 50%);
+  background-position:calc(100% - 16px) 15px,calc(100% - 11px) 15px;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--v-line2);border-radius:6px;overflow:hidden;margin-top:8px}
+.seg button{background:transparent;border:0;border-right:1px solid var(--v-line2);color:var(--v-muted);font-size:12.5px;height:30px;cursor:pointer;font-family:inherit}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1f1f1f;color:var(--v-text)}
+.switch{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--v-text);cursor:pointer;user-select:none}
+.switch small{display:block;color:var(--v-dim);font-size:12px}
+.sw{width:36px;height:20px;border-radius:20px;background:#2e2e2e;position:relative;transition:background .2s;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+body.practice .sw{background:#0a72ef}
+body.practice .sw::after{transform:translateX(16px)}
+.dnav{flex:1;overflow-y:auto;padding:8px 8px 16px}
+.dnav::-webkit-scrollbar{width:8px}.dnav::-webkit-scrollbar-thumb{background:#262626;border-radius:8px}
+.dgroup{margin-top:6px}
+.dgroup > button{width:100%;display:flex;align-items:center;justify-content:space-between;background:transparent;border:0;color:var(--v-text);
+  font-size:13.5px;font-weight:500;padding:8px 8px;border-radius:6px;cursor:pointer;text-align:left;font-family:inherit}
+.dgroup > button:hover{background:#161616}
+.dgroup > button .n{color:var(--v-dim);font-family:'Geist Mono',monospace;font-size:11.5px}
+.dgroup > button .chev{transition:transform .2s;color:var(--v-dim);margin-left:6px}
+.dgroup.open > button .chev{transform:rotate(90deg)}
+.dlist{display:none;margin:2px 0 6px 10px;border-left:1px solid var(--v-line2)}
+.dgroup.open .dlist{display:block}
+.dlink{display:flex;gap:8px;align-items:flex-start;padding:6px 8px 6px 12px;color:var(--v-muted);text-decoration:none;font-size:13px;line-height:18px;border-radius:0 6px 6px 0;margin-left:-1px;border-left:1px solid transparent}
+.dlink:hover{color:var(--v-text);background:#141414;border-left-color:#555}
+.dlink.active{color:#fff;border-left-color:#fff;background:#151515}
+.dlink .id{font-family:'Geist Mono',monospace;font-size:11px;color:var(--v-dim);min-width:26px;padding-top:1px}
+.dlink .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex:none;margin-left:auto}
+.dot.hp{background:#ff4d4f}.dot.nf{background:#777}.dot.pt{background:#f5a623}
+.dlink.hide{display:none}
+.dfoot{border-top:1px solid var(--v-line);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.dfoot .vbtn{padding:0 6px;font-size:12.5px}
+.dcount{font-size:12px;color:var(--v-dim);margin-top:8px}
+
+/* ================= A4 notebook page ================= */
+#book{padding:28px 12px 60px}
+.page{
+  position:relative;width:210mm;min-height:297mm;margin:0 auto 36px;
+  background:var(--paper);border-radius:3px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.06),0 20px 50px rgba(0,0,0,.6);
+  padding:0 16mm 16mm 26mm; overflow:hidden;
+}
+/* red margin line */
+.page::after{content:"";position:absolute;top:0;bottom:0;left:20mm;width:3px;
+  border-left:1.2px solid var(--margin);border-right:1.2px solid var(--margin);opacity:.7}
+.phead{height:22mm;display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:3mm;
+  border-bottom:2px solid var(--rule);color:var(--pencil);font-size:13px;font-weight:500}
+.phead .pno{display:flex;gap:16px;align-items:flex-end}
+.phead .pno span{border-bottom:1px solid #aaa;min-width:24mm;display:inline-block}
+.phead .pno b{color:var(--ink);font-weight:700}
+.pbody{
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh));
+  background-position:0 var(--off);
+  line-height:var(--lh);font-size:19.5px;padding-top:var(--lh);min-height:calc(297mm - 22mm - 16mm);
+  font-family:var(--hand);letter-spacing:.15px;
+}
+.pbody *{margin:0}
+.pbody p,.pbody li{line-height:var(--lh)}
+.pbody ul,.pbody ol{padding-left:24px}
+.pbody li{padding-left:2px}
+.pbody h3,.pbody h4{line-height:var(--lh);font-weight:700}
+
+/* question header */
+.qline{display:flex;gap:10px;align-items:flex-start;color:var(--ink2);font-size:21px;letter-spacing:.1px;-webkit-text-stroke:.35px var(--ink2)}
+.qline .qn{white-space:nowrap;color:var(--red)}
+.qline .marks{margin-left:auto;white-space:nowrap;border:1.5px solid var(--red);color:var(--red);border-radius:5px;padding:0 8px;
+  line-height:24px;margin-top:3px;font-size:15px;-webkit-text-stroke:0;font-family:var(--hand)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;height:var(--lh);align-items:center}
+.tag{font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:4px;line-height:18px;letter-spacing:.3px}
+.t-hp{background:#ffe1e1;color:#b71c1c}.t-imp{background:#ffeccc;color:#c25100}.t-qb{background:#efe0f7;color:#6a1b9a}
+.t-rep{background:#fde0ec;color:#9c1458}.t-saq{background:#d9f2ee;color:#00695c}.t-slide{background:#ececec;color:#424242}
+.t-full{background:#e0f3e1;color:#1b5e20}.t-partial{background:#fff4c7;color:#7a5f00}.t-nf{background:#e2e2e2;color:#222}
+.ansl{color:var(--red);font-weight:700;font-family:'Caveat',cursive;font-size:26px}
+
+.ans{color:var(--ink)}
+.ans h4{color:var(--red);font-size:20.5px;font-weight:400;-webkit-text-stroke:.3px var(--red);margin-top:var(--lh);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.ans > h4:first-child,.ans > .nf + h4,.ans > .warn + h4,.ans > .note + h4{margin-top:0}
+.ans b{color:var(--ink2);font-weight:400;-webkit-text-stroke:.45px var(--ink2)}
+.ex{border-left:3px solid #2e7d32;padding-left:12px;background:rgba(46,125,50,.04)}
+.exh{display:flex;align-items:center;gap:8px}
+.exh .tag{text-decoration:none;-webkit-text-stroke:0;font-family:Inter,sans-serif}
+.t-mat{background:#e0f3e1;color:#1b5e20}.t-mix{background:#e3f0ff;color:#0b4f9c}.t-ill{background:#eeeeee;color:#444}
+.ans mark,.hl{background:linear-gradient(transparent 40%,var(--hl) 40%,var(--hl) 90%,transparent 90%);color:inherit;padding:0 2px}
+.ans .note{color:var(--pencil);font-style:italic}
+.ans table{border-collapse:collapse;width:100%;background:#fff;font-size:17px;line-height:23px}
+.ans th,.ans td{border:1px solid #9aa6c4;padding:5px 8px;vertical-align:top;text-align:left;line-height:23px}
+.ans th{background:#eef2fb;color:var(--ink2)}
+.nf{border:1.5px dashed var(--red);color:var(--red);font-weight:700;padding:0 12px;background:#fff5f5;border-radius:6px}
+.warn{border-left:4px solid #f0a500;background:#fffae6;padding:0 12px;color:#5f4300;border-radius:0 6px 6px 0}
+.src{color:var(--pencil);font-size:13px;font-family:Inter,sans-serif;box-shadow:inset 0 1.5px 0 #d0d0d0;line-height:var(--lh);margin-top:var(--lh)!important}
+.src b{color:#333}
+.end{text-align:center;color:#9a9a9a;letter-spacing:6px}
+
+/* ================= diagrams ================= */
+.fig{background:#fff;border:1.3px solid #9aa6c4;border-radius:10px;padding:16px 12px 8px;margin:0;position:relative}
+.figcap{text-align:center;color:var(--red);font-size:16px;line-height:22px;margin-top:8px}
+.box{border:1.5px solid var(--ink);border-radius:8px;background:#fff;padding:5px 10px;text-align:center;line-height:20px;font-size:16px}
+.box b{display:block;font-size:16.5px;color:var(--ink2);font-weight:400;-webkit-text-stroke:.35px var(--ink2)}
+.box small{display:block;font-size:14.5px;color:#4a5680;line-height:18px}
+.flow{display:flex;align-items:center;justify-content:center;gap:4px}
+.flow.v{flex-direction:column}
+.flow.v .box{min-width:62%;max-width:92%}
+.flow.h{flex-wrap:wrap}
+.flow.h .box{max-width:190px}
+.arr{color:var(--red);font-size:20px;line-height:20px;font-weight:700}
+.tree{display:flex;flex-direction:column;align-items:center}
+.troot{border:2px solid var(--red);color:var(--red);border-radius:10px;padding:4px 16px;background:#fff;line-height:24px;font-size:18px;text-align:center;-webkit-text-stroke:.35px var(--red)}
+.tkids{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px;position:relative;width:100%}
+.tkids::before{content:"";position:absolute;top:-12px;left:6%;right:6%;border-top:1.5px solid var(--ink)}
+.tkids::after{content:"";position:absolute;top:-22px;left:50%;height:10px;border-left:1.5px solid var(--ink)}
+.tkid{position:relative;flex:1 1 130px;max-width:210px;display:flex}
+.tkid::before{content:"";position:absolute;top:-12px;left:50%;height:12px;border-left:1.5px solid var(--ink)}
+.tkid .box{width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two .col{border:1.5px solid var(--ink);border-radius:8px;background:#fff;overflow:hidden}
+.two .col h5{margin:0;background:#eef2fb;border-bottom:1.5px solid var(--ink);text-align:center;font-size:17px;font-weight:400;line-height:28px;color:var(--ink2);-webkit-text-stroke:.35px var(--ink2)}
+.two .col ul{margin:6px 0;padding-left:22px;font-size:16px;line-height:22px}
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;border-left:2px solid var(--ink)}
+.tl .ev{position:relative;line-height:22px;font-size:16.5px;margin:0 0 8px}
+.tl .ev::before{content:"";position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--red)}
+.tl .ev b{color:var(--red)}
+svg.dg{width:100%;height:auto;display:block}
+svg.dg text{font-family:'Patrick Hand','Comic Sans MS',cursive;fill:var(--ink);font-size:14.5px;text-anchor:middle}
+svg.dg .ln{stroke:#4a5680;stroke-width:1.4;fill:none}
+svg.dg .nd{fill:#fff;stroke:var(--ink);stroke-width:1.5}
+svg.dg .ct{fill:#fff4f4;stroke:var(--red);stroke-width:2}
+svg.dg .ctt{fill:var(--red);font-size:16px;stroke:var(--red);stroke-width:.35px}
+
+/* ================= cover / index / paper ================= */
+.cover .pbody{background-image:none;display:flex;flex-direction:column;align-items:center}
+.cover h1{font-family:'Caveat',cursive;font-size:62px;line-height:68px;color:var(--ink2);margin-top:20px;text-align:center}
+.cover .sub{font-size:16px;color:var(--red);font-weight:600}
+.label{width:88%;margin-top:26px;border:1.5px solid var(--ink);border-radius:10px;padding:12px 20px;background:#fff}
+.label div{display:flex;gap:10px;border-bottom:1px dotted #999;line-height:40px;font-size:15px}
+.label div span:first-child{min-width:130px;color:var(--pencil)}
+.instr{width:88%;margin-top:24px;font-size:14.5px;line-height:28px}
+.idx table{width:100%;border-collapse:collapse;font-size:13.5px}
+.idx th,.idx td{border:1px solid #9aa6c4;padding:0 8px;line-height:var(--lh);vertical-align:top}
+.idx th{background:#eef2fb}
+.idx td a{color:var(--ink);text-decoration:none}
+.idx td a:hover{text-decoration:underline}
+.qp .pbody{background-image:none;font-family:'Special Elite','Courier New',monospace;color:#111;font-size:14.5px;line-height:26px}
+.qp h2{text-align:center;font-size:19px;line-height:30px}
+.qp .rule{border-top:2px solid #111;margin:8px 0}
+.qp ol li{margin:0 0 8px;line-height:24px}
+.qp a{color:#555;font-size:12px;text-decoration:none;margin-left:6px}
+
+/* practice mode */
+body.practice .ans-body{filter:blur(6px);cursor:pointer;user-select:none}
+body.practice .page.reveal .ans-body{filter:none}
+.hide{display:none!important}
+
+@media (max-width:820px){
+  .page{width:100%;min-height:auto;padding:0 14px 20px 34px}
+  .page::after{left:22px}
+  .two{grid-template-columns:1fr}
+  .kbtn{min-width:0}.kbtn .t{display:none}
+  .crumb{display:none}
+}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .topbar,.drawer,.scrim{display:none!important}
+  #book{padding:0}
+  .page{margin:0;box-shadow:none;border-radius:0;break-after:page;width:210mm;min-height:297mm}
+  body.practice .ans-body{filter:none}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="iconbtn" id="openNav" aria-label="Open navigation" title="Menu">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <div class="logo">
+    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" fill="#ededed"/></svg>
+    <span>EBD Notebook</span>
+  </div>
+  <span class="crumb-sep">/</span>
+  <span class="crumb" id="crumb">Cover</span>
+  <div class="spacer"></div>
+  <button class="kbtn" id="openSearch"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="t">Search answers...</span><span class="kbd">&#8984;K</span></button>
+  <button class="vbtn primary" onclick="window.print()">Print A4</button>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Navigation">
+  <div class="dhead">
+    <div class="logo"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" fill="#ededed"/></svg><span>Contents</span></div>
+    <button class="iconbtn" id="closeNav" aria-label="Close"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="dsec">
+    <input id="search" class="vinput" type="search" placeholder="Search questions and answers...">
+    <div class="seg" id="seg">
+      <button data-p="" class="on">All</button>
+      <button data-p="hp">High Priority</button>
+      <button data-p="nf">Not found</button>
+    </div>
+    <select id="fPriority" class="vinput" style="margin-top:8px">
+      <option value="">Filter: all questions</option>
+      <option value="hp">High Priority</option>
+      <option value="imp">Teacher IMP</option>
+      <option value="qb">Question Bank</option>
+      <option value="rep">Repeated</option>
+      <option value="saq">Book questions</option>
+      <option value="nf">Not found / partial</option>
+    </select>
+    <select id="fSection" class="vinput" style="margin-top:8px"><option value="">All chapters</option></select>
+    <div class="dcount" id="count"></div>
+  </div>
+  <div class="dsec">
+    <label class="switch" id="practice"><span>Practice mode<small>Blur answers; click a page to reveal</small></span><span class="sw"></span></label>
+  </div>
+  <nav class="dnav" id="dnav"></nav>
+  <div class="dfoot">
+    <button class="vbtn" onclick="goto('cover')">Cover</button>
+    <button class="vbtn" onclick="goto('index')">Index</button>
+    <button class="vbtn" onclick="goto('qpaper')">Paper</button>
+  </div>
+</aside>
+
+<div id="book"></div>
+
+<script>
+/* =================== DIAGRAM HELPERS =================== */
+let SVGID = 0;
+function wrap(t, n){ const w=t.split(' '); const L=[]; let c='';
+  w.forEach(x=>{ if((c+' '+x).trim().length>n){ if(c) L.push(c); c=x; } else c=(c+' '+x).trim(); });
+  if(c) L.push(c); return L; }
+function bx(s){ const [h,sub] = Array.isArray(s)?s:[s,'']; return `<div class="box"><b>${h}</b>${sub?`<small>${sub}</small>`:''}</div>`; }
+const cap = c => `<div class="figcap">Fig: ${c}</div>`;
+const D = {
+  flow(c, steps, dir='v'){
+    return `<div class="fig"><div class="flow ${dir}">${steps.map((s,i)=>(i?`<div class="arr">${dir==='v'?'&darr;':'&rarr;'}</div>`:'')+bx(s)).join('')}</div>${cap(c)}</div>`;
+  },
+  tree(c, root, kids){
+    return `<div class="fig"><div class="tree"><div class="troot">${root}</div><div class="tkids">${kids.map(k=>`<div class="tkid">${bx(k)}</div>`).join('')}</div></div>${cap(c)}</div>`;
+  },
+  two(c, a, b, vs='V/S'){
+    const col = ([t,items]) => `<div class="col"><h5>${t}</h5><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+    return `<div class="fig"><div class="two">${col(a)}${col(b)}</div>${cap(c)}</div>`;
+  },
+  timeline(c, items){
+    return `<div class="fig"><div class="tl">${items.map(([y,t])=>`<div class="ev"><b>${y}</b> &ndash; ${t}</div>`).join('')}</div>${cap(c)}</div>`;
+  },
+  mind(c, center, br){
+    const n=br.length, W=680, H=Math.max(320, 120+n*27), cx=W/2, cy=H/2, rx=252, ry=H/2-48;
+    const bw = n>9 ? 116 : 128, wn = n>9 ? 15 : 17;
+    let lines='', nodes='';
+    br.forEach((b,i)=>{
+      const a=-Math.PI/2 + i*2*Math.PI/n, x=cx+rx*Math.cos(a), y=cy+ry*Math.sin(a);
+      lines += `<path class="ln" d="M${cx} ${cy} Q ${(cx+x)/2+12} ${(cy+y)/2-12} ${x} ${y}"/>`;
+      const L=wrap(b,wn), h=L.length*16+12;
+      nodes += `<rect class="nd" x="${x-bw/2}" y="${y-h/2}" width="${bw}" height="${h}" rx="8"/>` +
+        L.map((l,j)=>`<text x="${x}" y="${y-h/2+19+j*16}">${l}</text>`).join('');
+    });
+    const CL=wrap(center,13), ch=CL.length*18+20;
+    const ctr = `<ellipse class="ct" cx="${cx}" cy="${cy}" rx="82" ry="${Math.max(30,ch/2+6)}"/>` +
+      CL.map((l,j)=>`<text class="ctt" x="${cx}" y="${cy-ch/2+24+j*18}">${l}</text>`).join('');
+    return `<div class="fig"><svg class="dg" viewBox="0 0 ${W} ${H}">${lines}${ctr}${nodes}</svg>${cap(c)}</div>`;
+  },
+  cycle(c, center, items){
+    const id='ar'+(SVGID++), n=items.length, W=640, H=400, cx=W/2, cy=H/2, R=150;
+    let arcs='', nodes='';
+    const pt = a => [cx+R*Math.cos(a), cy+R*Math.sin(a)];
+    for(let i=0;i<n;i++){
+      const a1=-Math.PI/2+i*2*Math.PI/n, a2=-Math.PI/2+(i+1)*2*Math.PI/n, g=0.34;
+      const [x1,y1]=pt(a1+g), [x2,y2]=pt(a2-g);
+      arcs += `<path class="ln" marker-end="url(#${id})" d="M${x1} ${y1} A ${R} ${R} 0 0 1 ${x2} ${y2}"/>`;
+      const [x,y]=pt(a1), L=wrap(items[i],17), h=L.length*16+12, w=150;
+      nodes += `<rect class="nd" x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="9"/>`+
+        L.map((l,j)=>`<text x="${x}" y="${y-h/2+19+j*16}">${l}</text>`).join('');
+    }
+    const CL=wrap(center,14);
+    return `<div class="fig"><svg class="dg" viewBox="0 0 ${W} ${H}"><defs><marker id="${id}" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#c62828"/></marker></defs>${arcs}
+      <circle class="ct" cx="${cx}" cy="${cy}" r="62"/>${CL.map((l,j)=>`<text class="ctt" x="${cx}" y="${cy-(CL.length-1)*9+5+j*18}">${l}</text>`).join('')}${nodes}</svg>${cap(c)}</div>`;
+  }
+};
+
+/* =================== CHAPTERS =================== */
+const SECTIONS = {
+  A:"Chapter 1: Concept, History & Evolution of Entrepreneurship",
+  B:"Chapter 2: Entrepreneur, Manager & Intrapreneur",
+  C:"Chapter 3: Theories of Entrepreneurship",
+  D:"Chapter 4: Types & Traits of Entrepreneurs",
+  E:"Chapter 5: Process of Entrepreneurship",
+  F:"Chapter 6: Factors Affecting Entrepreneurship",
+  G:"Chapter 7: Entrepreneurship Support System",
+  H:"Chapter 8: Venture Capital Financing"
+};
+
+/* =================== QUESTIONS (ALL 5 MARKS) =================== */
+const Q = [
+/* ---------- A ---------- */
+{id:"A1",s:"A",tags:["imp"],st:"full",
+q:"What is Entrepreneurship? Explain the meaning and concept of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>The word <mark>"Entrepreneurship"</mark> originally evolved from the French expression <b>"entreprendre"</b>. Etymologically, entrepreneurship denotes <b>"taking from below"</b> or <b>"undertaking"</b>.</p>
+<h4>Meaning</h4>
+<p><mark>Entrepreneurship is the capacity of a person to assume risk, accountability and challenges with a view to explore opportunities, disrupt market norms and create values.</mark> Some scholars defined it in terms of the <b>attributes</b> of an entrepreneur (traits, competencies, cognitive capabilities), while others defined it in terms of the <b>activities</b> that entrepreneurs undertake.</p>
+<h4>Concept - Views of Different Scholars</h4>
+<ol>
+<li><b>Richard Cantillon (1680-1744):</b> first popularised the idea. Business owners pay a particular price for a product to resell it at an uncertain price, so they take on more risk than others.</li>
+<li><b>Adam Smith (1776):</b> the entrepreneur is a "profit-seeking enterpriser" who establishes a business with a commercial goal.</li>
+<li><b>J.B. Say (1807):</b> the entrepreneur coordinates and manages the factors of production. Functions are "coordination, organisation and supervision".</li>
+<li><b>Schumpeter (1934):</b> "The function of entrepreneurs is to reform or revolutionize the pattern of production by exploiting an invention or an untried technological possibility..." The entrepreneur is an innovator.</li>
+<li><b>Cole (1942):</b> an "integrated sequence of actions taken by an individual or group... in a world characterized by a large degree of uncertainty".</li>
+<li><b>Gartner:</b> entrepreneurship is the creation of new organisations.</li>
+<li><b>Shane &amp; Venkataraman (2000):</b> "the process by which opportunities to develop or create new goods &amp; services are discovered, evaluated and exploited". <b>Creativity</b> is its foundation.</li>
+<li><b>Stevenson &amp; Mossi (1990):</b> the pursuit of opportunity beyond the resources under current control.</li>
+</ol>
+${D.mind("Concept of entrepreneurship - views of scholars","ENTREPRENEURSHIP",["Cantillon: risk of uncertain resale","Adam Smith: profit-seeking enterpriser","J.B. Say: coordinator of factors","Schumpeter: innovator","Cole: actions under uncertainty","Gartner: creation of new organisations","Shane & Venkataraman: discover, evaluate, exploit","Stevenson: opportunity beyond resources"])}
+<h4>Modern Concept</h4>
+<p>Entrepreneurship is the act of creating a business while bearing all the risks with the hope of making a profit. The more modern definition is also about <mark>transforming the world by solving big problems</mark>, such as bringing about social change or creating an innovative product that challenges the status quo.</p>
+<h4>Conclusion</h4>
+<p>Thus entrepreneurship is the capability and willingness to create, organise and manage a business venture, including handling its inherent risks, to make a profit.</p>`,
+src:"Unit-1 part 1.pdf p1-3, p17-18; Introduction to Entrepreneurship slides p3; Unit 2 p3; Teacher IMP note (item 1)"},
+
+{id:"A2",s:"A",tags:["qb","imp"],st:"full",
+q:"Explain the history of entrepreneurial activity.",
+a:()=>`<h4>Introduction</h4>
+<p>The idea of entrepreneurship developed gradually over nearly three centuries. It moved from a <b>risk-bearing trader</b> to a <b>creator of new organisations and exploiter of opportunities</b>.</p>
+<h4>Historical Development</h4>
+<ol>
+<li><b>Richard Cantillon (early 18th century):</b> a French economist and banker who first popularised the idea by studying entrepreneurial activities in France. He pointed out that business owners buy at a particular price and resell at an <mark>uncertain price</mark>, and so bear more risk than other people.</li>
+<li><b>Classical economists (Industrial Revolution, mid-18th century, Britain):</b> classical theory focused on rivalry, competition, specialisation and free trade, and outlined three factors of production: <b>land, capital and labour</b>. It was criticised for not explaining the dynamic upheaval caused by industrial-age entrepreneurs.</li>
+<li><b>Adam Smith (1776):</b> expanded the economic definition. The entrepreneur is a <mark>"profit-seeking enterpriser"</mark> who establishes a business with a commercial goal.</li>
+<li><b>Jean-Baptiste Say (1807):</b> brought <b>economic development</b> into the idea. The entrepreneur coordinates and manages the factors of production, assumes risk, makes profit and builds wealth. Skills of superintendence and administration are needed.</li>
+<li><b>Joseph Schumpeter (1934):</b> before him, entrepreneurship was not seen as a dynamic force able to transform a nation's economy. He described the entrepreneur as an <mark>innovator</mark> who disrupts the equilibrium-state market through novel combinations.</li>
+<li><b>Cole (1942):</b> entrepreneurship is an integrated sequence of actions under uncertainty.</li>
+<li><b>Gartner (1985-2001), Katz &amp; Gartner (1988), Low &amp; MacMillan (1988):</b> entrepreneurship is the creation of new organisations, and the behavioural dispositions of founders are crucial.</li>
+<li><b>Shane &amp; Venkataraman (2000), Davidsson et al. (2006):</b> discovering, evaluating and exploiting opportunities, and "the creation of new economic activity".</li>
+</ol>
+${D.timeline("Timeline - history of entrepreneurship",[["Early 1700s","Cantillon: risk-bearer, buys at a certain price and sells at an uncertain price"],["Mid-1700s","Classical economists: land, capital, labour"],["1776","Adam Smith: profit-seeking enterpriser"],["1807","J.B. Say: coordinator of factors of production"],["1934","Schumpeter: innovator, engine of growth"],["1942","Cole: actions under uncertainty"],["1985-1988","Gartner, Katz & Gartner, Low & MacMillan: creation of new organisations"],["2000-2006","Shane & Venkataraman, Davidsson: opportunity and new economic activity"]])}
+<h4>Conclusion</h4>
+<p>The concept moved from <b>risk-bearer</b> (Cantillon) to <b>profit-seeker</b> (Smith), <b>coordinator</b> (Say), <b>innovator</b> (Schumpeter), and finally to <b>creator of organisations and exploiter of opportunities</b> (modern scholars).</p>`,
+src:"Unit-1 part 1.pdf p1-3 (1.1), p7-8 (classical theory); Teacher IMP note (item 8); Question Bank"},
+
+{id:"A3",s:"A",tags:["qb","imp","saq"],st:"full",
+q:"Explain the evolution of the concept of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>The present academic discipline of entrepreneurship has evolved from various schools of thought. For example, <b>Gartner (1985)</b> gave four perspectives: the individual, the activities, the environment, and the organisation's structure and strategy. <b>Alvarez &amp; Urbano (2011)</b> gave three approaches: economic, psychological and sociological/institutional. The evolution can be classified into the following phases:</p>
+<h4>1. Entrepreneur as a Rational Agent</h4>
+<p>Following Cantillon's heritage, economists defined the entrepreneur as a <b>rational actor</b>: a risk-seeker (Cantillon, Say, Knight), a superior worker (Say, Smith), an efficient coordinator (Marshall, Casson), an information seeker (Hayek, Kirzner) and an innovator (Schumpeter). Most, except Schumpeter and Kirzner, saw entrepreneurs as <mark>reactive</mark> to changes. The idea lacked clarity and consensus.</p>
+<h4>2. From Rational Agent to Personality Traits</h4>
+<p>Research focused on individual characteristics using trait theories and psychology. <b>McClelland (1965)</b>: personality is defined by the <mark>need for success or self-realisation</mark>. Other traits: internal locus of control, self-confidence, risk-taking, need for power, drive for independence. The results were inconclusive, and <b>Fonrouge (2002)</b> developed the behavioural school (competencies drive behaviour).</p>
+<h4>3. From Personality Traits to Opportunity Recognition</h4>
+<p>In the late 1990s the focus turned to how opportunities are found, created and used. <b>Shane &amp; Venkataraman (2000)</b>: discovery and exploitation are two connected processes. <b>Ardichvili et al. (2003)</b>: opportunity development is a continuous process of <mark>perception, discovery and creation</mark>.</p>
+<h4>4. From Opportunity to Institutions and Networks</h4>
+<p>Environmental, institutional and cultural factors determine how a business is initiated. Sociocultural values encourage risk-taking, innovation and self-reliance. <b>Gnyawali &amp; Fogel (1994)</b> gave five institutional factors. Social networks give access to resources and information.</p>
+<h4>5. Constructivist and Integrating Approach</h4>
+<p><b>Busenitz et al. (2003)</b> stressed the links among environment, people, organisational capacity and opportunity. <b>Watson (2013)</b> called for integrating history, philosophy and sociology. One must understand the <mark>person, the project and the links between them</mark>.</p>
+${D.flow("Phases in the evolution of entrepreneurship",[["Entrepreneur as Rational Agent","Change agent - risk, coordination (Cantillon, Say)"],["Personality Traits","Need for achievement (McClelland)"],["Opportunity Recognition","Discovery & exploitation (Shane & Venkataraman)"],["Institutions & Networks","Socio-cultural environment (Gnyawali & Fogel)"],["Constructivist / Integrating Approach","Person + project + environment (Busenitz, Watson)"]])}
+<h4>Conclusion</h4>
+<p>The concept evolved from change agent to personality traits, opportunity recognition, networking and institutions, and finally constructivism.</p>`,
+src:"Unit-1 part 1.pdf p3-5 (1.2, Activity 1); Introduction slides p9-12; Teacher IMP note (item 9); Question Bank"},
+
+{id:"A4",s:"A",tags:["qb"],st:"partial",
+q:"Explain the revolution of entrepreneurship.",
+a:()=>`<p class="nf">The term "Revolution of entrepreneurship" is not found in the provided study material.</p>
+<p class="note">This is most likely a typo for "Evolution of entrepreneurship" (see Q.A3). The related content that IS in the material is written below.</p>
+<h4>Entrepreneur "revolutionizes" production (Schumpeter)</h4>
+<p>According to Schumpeter, <mark>"The function of entrepreneurs is to reform or revolutionize the pattern of production</mark> by exploiting an invention or more generally an untried technological possibility for producing a new commodity or producing an old one in a new way, opening a new source of supply of materials or a new outlet for products, by reorganizing a new industry."</p>
+<p>Before Schumpeter (1934), entrepreneurship was <b>not seen as a dynamic force</b> capable of transforming and expanding a nation's economic activity. He showed that the entrepreneur <b>destroys or disrupts an equilibrium-state market</b>, where people are otherwise unwilling to change their behaviour because there are not enough incentives.</p>
+<h4>How an entrepreneur revolutionizes production</h4>
+<p>The Unit 1 text says an entrepreneur essentially revolutionizes the pattern of production of goods or services through:</p>
+<ol>
+<li>exploiting a <b>novel technological invention</b>,</li>
+<li><b>innovating existing means</b> of production,</li>
+<li>introducing a <b>novel production process</b>, or</li>
+<li>a <b>new business model</b>.</li>
+</ol>
+<p>The entrepreneur can help a new business thrive by <b>creating new demand, expanding into new markets, and exploring new technology or supply chains</b>.</p>
+${D.tree("Ways an entrepreneur revolutionizes the pattern of production","Entrepreneur revolutionizes production",["Novel technological invention","Innovating existing means of production","Novel production process","New business model"])}
+<h4>Conclusion</h4>
+<p>In the material, entrepreneurship is "revolutionary" because it disrupts the existing market equilibrium and reforms the pattern of production. For the changes in the concept over time, write Q.A3 (Evolution).</p>`,
+src:"Unit-1 part 1.pdf p2 (Schumpeter quote), p6 (1.3); Question Bank (additional topic)"},
+
+/* ---------- B ---------- */
+{id:"B1",s:"B",tags:["qb","saq"],st:"full",
+q:"Explain entrepreneurship and intrapreneurship. How is an entrepreneur different from an intrapreneur?",
+a:()=>`<h4>Entrepreneur</h4>
+<p>An entrepreneur recognises unexplored opportunities, exploits unfulfilled market needs, develops a business idea or plan, and <mark>assumes financial risk and uncertainty</mark> to achieve a commercial goal. They run their own organisation independently to create incremental wealth and impact.</p>
+<h4>Intrapreneur / Intrapreneurship</h4>
+<p>Individuals who perform as entrepreneurs but do it <mark>within an organisation</mark> are called intrapreneurs. They are employees who innovate for the business and take risks for their employer, i.e. an intra-company entrepreneur.</p>
+<p>The term <b>intrapreneurship</b> was coined by <b>Pinchot (1985)</b> to describe the "entrepreneurial spirit" that fosters projects and business initiatives within organisations. Intrapreneurs use their entrepreneurial knowledge, insight and forward thinking in their position. They are imaginative people who often work in teams to create new products, technologies or services for their employers.</p>
+<p><b>Examples:</b> Paul Buchheit, who created <b>Gmail</b>, and Ken Kutaragi, who created <b>PlayStation</b> at Sony.</p>
+${D.two("Entrepreneur vs intrapreneur",["ENTREPRENEUR",["Runs own organisation independently","Bears all risks: no revenue, small team, uncertain future","Own investment","Rewards can be very attractive (disruptive innovation)","Owns the product"]],["INTRAPRENEUR",["Works within the confines of the company","Company assumes the financial risk","Company makes the investment","Rewards: bonus, promotion, salary hike","Company owns the product as its IP"]])}
+<h4>Differences</h4>
+<table><tr><th>Basis</th><th>Entrepreneur</th><th>Intrapreneur</th></tr>
+<tr><td>Independence</td><td>Independent</td><td>Not independent; works within company objectives</td></tr>
+<tr><td>Risk</td><td>Bears the risks of a new business</td><td>Company bears the financial risk</td></tr>
+<tr><td>Reward</td><td>Wealth and impact; can be very attractive</td><td>Minimal: bonus, promotion or salary hike</td></tr>
+<tr><td>Ownership</td><td>Owns the business</td><td>Company owns the products (intellectual property)</td></tr>
+</table>
+<h4>Conclusion</h4>
+<p>An intrapreneur can develop new concepts, goods and commercial objectives <b>without assuming the risks</b> of forming a new business, but the rewards are smaller than an entrepreneur's.</p>`,
+src:"Unit-1 part 1.pdf p6-7 (1.4, Activity 2), p18 (Keywords); Question Bank"},
+
+{id:"B2",s:"B",tags:[],st:"full",
+q:"Differentiate between an Entrepreneur and a Manager.",
+a:()=>`<h4>Entrepreneur</h4>
+<p>An entrepreneur's task is to <mark>recognise unexplored opportunities</mark>, exploit unfulfilled market needs, develop a business idea or plan, and assume financial risk and uncertainty to achieve a commercial goal. The entrepreneur develops solutions through new products and services, and revolutionises the pattern of production. The focus is <b>external</b>: scanning and interpreting external market information to form strategy.</p>
+<h4>Manager</h4>
+<p>A manager is primarily responsible for <mark>overseeing and guiding the ongoing operations</mark> of an existing firm, to produce and supply goods and services efficiently and on time. A manager is an <b>employee</b> who works for a fixed salary and defined incentives. The main responsibilities are planning, organising, motivating, controlling and coordinating. The sphere of activity is mostly <b>inside</b> the company.</p>
+${D.two("Focus of an entrepreneur vs a manager",["ENTREPRENEUR (external focus)",["External market trends","Assumes financial risk and uncertainty","Disruptive innovation and wealth creation","Owner: profit from effort and investment"]],["MANAGER (internal focus)",["Internal day-to-day operations","Salaried employee","Resource optimisation, planning and control","Fixed salary and incentives"]])}
+<h4>Differences</h4>
+<table><tr><th>Basis</th><th>Entrepreneur</th><th>Manager</th></tr>
+<tr><td>Main task</td><td>Recognises opportunities, develops the business idea</td><td>Runs ongoing operations of an existing firm</td></tr>
+<tr><td>Risk</td><td>Assumes financial risk</td><td>Does not bear business risk</td></tr>
+<tr><td>Status</td><td>Owner</td><td>Employee</td></tr>
+<tr><td>Reward</td><td>Profit</td><td>Fixed salary and defined incentives</td></tr>
+<tr><td>Focus</td><td>External</td><td>Internal</td></tr>
+<tr><td>Aim</td><td>Innovation, value and wealth creation</td><td>Efficient achievement of goals; optimal use of resources</td></tr>
+<tr><td>Functions</td><td>Strategy, investment, innovation</td><td>Planning, organising, motivating, controlling, coordinating</td></tr>
+</table>
+<h4>Conclusion</h4>
+<p>The entrepreneur creates the venture and bears its risk, while the manager efficiently runs the existing organisation.</p>`,
+src:"Unit-1 part 1.pdf p6 (1.3), p18 (Keywords); Introduction slides p4"},
+
+/* ---------- C ---------- */
+{id:"C1",s:"C",tags:["saq"],st:"full",
+q:"Mention the basic theories of entrepreneurship. Discuss any two theories with relevant examples.",
+a:()=>`<h4>Introduction</h4>
+<p>Most theories of entrepreneurship have their origin in five academic disciplines: <mark>economics, psychology, anthropology, management and sociology</mark>.</p>
+${D.tree("Disciplines of entrepreneurship theories","Theories of Entrepreneurship",[["Economic","economic factors that encourage entrepreneurship"],["Psychological","personality, locus of control, need for achievement"],["Sociological","social environment, institutions, networks"],["Anthropological","culture, customs, beliefs"],["Management",""]])}
+<h4>Basic Theories (names)</h4>
+<p>Schumpeter's Innovation Theory; Rotter's Locus of Control; McClelland's Need for Achievement; Knight's Risk and Uncertainty; Hagen's Theory; Cochran's Cultural Values; Reynolds' Sociological Theory; Opportunity-Based Theory (Drucker, Stevenson); Kirzner's Entrepreneurial Alertness; Resources and Capabilities; Sarasvathy's Effectuation; Lévi-Strauss's Bricolage.</p>
+<h4>1. Innovation Theory - Joseph Schumpeter</h4>
+<p>Entrepreneurship stimulates economic development by upending the economy's fixed circular flow through <mark>"novel combinations"</mark> (innovation) of the factors of production. The entrepreneur is a "man of action" and an "engine of growth". Innovation means a new product, a new process, a new market, a new raw-material source or a new organisation structure. Schumpeter separates the <b>inventor</b> (discovers techniques) from the <b>innovator</b> (turns an invention into a viable business).<br><span class="note">Example given in the material: Tesla and iPhone (innovation entrepreneurship).</span></p>
+<h4>2. Hagen's Theory</h4>
+<p>The creativity of a <mark>marginalised minority group</mark> drives entrepreneurship. Withdrawal of status respect causes personality change and entrepreneurial behaviour. There are four responses: Retreatist, Ritualist, Reformist and Innovator.<br><span class="note">Example: the Japanese samurai community lost its prestige, became vigorous in trying to regain it, and gave rise to many entrepreneurs.</span></p>
+<h4>Conclusion</h4>
+<p>Each theory explains entrepreneurship from a different angle: economic, psychological, social or cultural.</p>`,
+src:"Unit-1 part 1.pdf p7-14 (1.5), p17 (examples), p18 (SAQ 1); Introduction slides p5-6"},
+
+{id:"C2",s:"C",tags:[],st:"full",
+q:"Explain Schumpeter's Innovation Theory of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>Joseph A. Schumpeter (1934) presented the Innovation Theory in his "<b>Theory of Economic Development</b>". According to him, entrepreneurship serves as a <mark>stimulant for economic development</mark> by upending the economy's fixed circular flow.</p>
+<h4>Main Points</h4>
+<ol>
+<li><b>Novel combinations:</b> entrepreneurs experiment with novel combinations of the factors of production, which Schumpeter called <mark>innovation</mark>, and so push the economy to a new level of development.</li>
+<li><b>Engine of growth:</b> the entrepreneur is the "man of action", the "engine of growth" and the driver of economic change.</li>
+<li><b>Role:</b> the entrepreneur integrates and manages the factors and resources that contribute to productivity.</li>
+<li><b>Creative activity:</b> entrepreneurship is "a creative activity" with innovation, risk-taking and resource management as integral parts.</li>
+<li><b>Disrupts equilibrium:</b> the entrepreneur destroys or disrupts an equilibrium-state market.</li>
+<li><b>Human actor at the centre:</b> Schumpeter was the first leading economist to place human actors at the core of economic development.</li>
+</ol>
+${D.tree("Forms of innovation (Schumpeter)","INNOVATION = Novel Combinations",["New combination of existing resources","New product or service","New process of production","Entry into a new market","New source of raw material","New industrial / organisational structure"])}
+<h4>Inventor vs Innovator</h4>
+${D.two("Inventor vs innovator",["INVENTOR",["Discovers new techniques and materials","Interested in the technical work of discovery"]],["INNOVATOR (Entrepreneur)",["Applies or modifies discoveries into unique combinations","Turns an invention into a financially viable business opportunity"]])}
+<h4>Conclusion</h4>
+<p>According to Schumpeter, the entrepreneur is essentially an <b>innovator</b> who reforms the pattern of production and drives economic development.</p>`,
+src:"Unit-1 part 1.pdf p2, p8-9; Introduction slides p5"},
+
+{id:"C3",s:"C",tags:[],st:"full",
+q:"Explain David McClelland's Need for Achievement theory.",
+a:()=>`<h4>Introduction</h4>
+<p>David McClelland developed the need for achievement theory (1961) in his book <b>"The Achieving Society"</b>. It assumes that humans have a need to <mark>succeed, accomplish, excel or achieve</mark> in life. Motivation is the ultimate driver of entrepreneurship.</p>
+<h4>Main Points</h4>
+<ol>
+<li>The desire to succeed motivates successful entrepreneurs. The need for achievement (<b>N-Ach</b>) encourages them to take on risky and uncertain tasks.</li>
+<li>People with high N-Ach are <mark>not swayed by money</mark> or any other external reward.</li>
+<li>N-Ach is a relatively stable personality attribute that develops in middle childhood through family socialisation and child-rearing that stresses high standards, warmth and self-reliance.</li>
+<li>Communities with a strong drive for achievement have <b>greater economic prosperity</b>.</li>
+<li>N-Ach can be developed through <b>training</b> (factors file).</li>
+</ol>
+${D.tree("Three needs according to McClelland","Human Needs",[["Need for Achievement","desire to succeed, progress and grow"],["Need for Power","desire to control or influence others"],["Need for Affiliation","desire for friendly, intimate relationships"]])}
+<h4>Five Components of N-Ach</h4>
+${D.flow("Components of need for achievement",["Accepting responsibility for problem solving","Setting objectives","Achieving goals by one's own effort","Recognising and using feedback","Taking moderate risk"],'h')}
+<h4>Conclusion</h4>
+<p>According to McClelland, entrepreneurship emerges in a society with a high need for achievement. One person succeeds and another fails because of differences in motivation.</p>`,
+src:"Unit-1 part 1.pdf p9-10; factors.pdf p5 (6.1); Introduction slides p5"},
+
+{id:"C4",s:"C",tags:["saq"],st:"full",
+q:"Evaluate the contribution of Joseph Schumpeter and David McClelland with regard to entrepreneurship.",
+a:()=>`<h4>Contribution of Joseph Schumpeter</h4>
+<ol>
+<li>Before Schumpeter (1934), entrepreneurship was <mark>not seen as a dynamic force</mark> able to transform a nation's economy. He made it central to economic development.</li>
+<li>He described the entrepreneur as an <b>innovator</b>, "man of action" and "engine of growth" who creates novel combinations: new products, processes, markets, raw materials and organisation.</li>
+<li>He showed that the entrepreneur <b>disrupts the equilibrium</b> of the market.</li>
+<li>He separated the <b>inventor</b> from the <b>innovator</b>.</li>
+<li>He was the first leading economist to place <b>human actors</b> at the core of economic development.</li>
+</ol>
+<h4>Contribution of David McClelland</h4>
+<ol>
+<li>He shifted attention to the <mark>psychology</mark> of the entrepreneur. <b>Motivation</b> is the ultimate driver.</li>
+<li>The need for achievement (N-Ach), <b>not money</b>, motivates entrepreneurs.</li>
+<li>He gave three needs (achievement, power, affiliation) and five components of N-Ach.</li>
+<li>He linked high-achievement societies to <b>economic prosperity</b>.</li>
+<li>His work started the <b>personality traits phase</b> in the evolution of entrepreneurship (McClelland, 1965).</li>
+</ol>
+${D.two("Contribution of Schumpeter and McClelland",["SCHUMPETER (Economic view)",["Innovation theory (1934)","Entrepreneur = innovator","Novel combinations","Disrupts equilibrium","Economic development"]],["McCLELLAND (Psychological view)",["Need for achievement (1961)","Entrepreneur = high achiever","Motivation, not money","Three needs: achievement, power, affiliation","Economic prosperity of society"]])}
+<h4>Evaluation / Conclusion</h4>
+<p>Schumpeter explained <b>what</b> entrepreneurs do (innovate) and its effect on the economy. McClelland explained <b>why</b> people become entrepreneurs (need for achievement). Together they cover the economic and psychological sides of entrepreneurship.</p>`,
+src:"Unit-1 part 1.pdf p2, p4, p8-10, p15 (Activity 3)"},
+
+{id:"C5",s:"C",tags:[],st:"full",
+q:"Explain the Theory of Locus of Control (Julian Rotter).",
+a:()=>`<h4>Introduction</h4>
+<p>Locus of control is a crucial component of personality. The idea was first presented by <b>Julian Rotter</b> in the 1950s.</p>
+<h4>Meaning</h4>
+<p>Locus of control is <mark>an individual's view and perspective about the underlying causes of events in his or her life</mark>. It is a view on whether the outcomes of our actions depend on what we do (internal control orientation) or on external factors beyond our control (external control orientation).</p>
+${D.two("Internal vs external locus of control",["INTERNAL LOCUS",["Believes they themselves control the events and outcomes of life","Found in most successful entrepreneurs","Linked with intention to start a business"]],["EXTERNAL LOCUS",["Believes chance, luck or fate cause life's events","Outcomes depend on circumstances beyond control"]])}
+<h4>Locus of Control and Entrepreneurship</h4>
+<ol>
+<li>Empirical findings suggest that an <mark>internal locus of control</mark> is a trait most successful entrepreneurs possess.</li>
+<li>Internal locus of control is <b>positively correlated with the intention to start a business</b>.</li>
+<li><b>Rauch &amp; Frese (2000)</b> found that company owners have a marginally greater internal locus of control than other groups.</li>
+<li>Other studies found high <b>inventiveness, competitive aggressiveness and autonomy</b> among people with internal locus of control.</li>
+<li>In the evolution of entrepreneurship, internal locus of control is listed among the traits that influence entrepreneurial behaviour.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Successful entrepreneurs believe they <b>dictate their own outcomes</b> (internal control).</p>`,
+src:"Unit-1 part 1.pdf p4, p9; Introduction slides p5"},
+
+{id:"C6",s:"C",tags:[],st:"full",
+q:"Explain Knight's Theory of Risk and Uncertainty.",
+a:()=>`<h4>Introduction</h4>
+<p>Risk-taking is an essential prerequisite of entrepreneurship. <b>Professor Knight</b> and <b>John Stuart Mill</b> believed that taking risks is an essential part of being an entrepreneur.</p>
+<h4>Main Points</h4>
+<ol>
+<li><b>Profit from risk:</b> the risk-bearing theory states that the entrepreneur <mark>makes profit by taking risks</mark>.</li>
+<li><b>Varied degrees:</b> depending on their abilities and preferences, entrepreneurs take on different degrees of risk.</li>
+<li><b>More risk, more profit:</b> if a business venture is riskier, the profit is also likely to be larger.</li>
+<li><b>Uncertainty:</b> a condition in which neither <b>"a priori reasoning"</b> nor <b>statistical inference</b> can establish the probabilities of events. Applying a priori reasoning to a unique economic event is irrelevant.</li>
+<li><b>Reward:</b> profit is the reward for bearing <mark>non-insurable risks and uncertainties</mark>.</li>
+<li><b>Function:</b> the amount of profit earned is a function of the level of uncertainty borne.</li>
+</ol>
+${D.flow("Knight's risk and uncertainty theory",[["Entrepreneur bears risk","according to ability and preference"],["Non-insurable uncertainty","probabilities cannot be calculated"],["PROFIT = reward for uncertainty","more uncertainty, more profit"]])}
+<h4>Conclusion</h4>
+<p>According to Knight, profit is the specific reward for bearing non-insurable economic uncertainties.</p>`,
+src:"Unit-1 part 1.pdf p10; Introduction slides p5"},
+
+{id:"C7",s:"C",tags:[],st:"full",
+q:"Explain Hagen's Theory of Entrepreneurship (Status Withdrawal).",
+a:()=>`<h4>Introduction</h4>
+<p><b>Hagen (1962)</b> argued that the primary driver of entrepreneurship is the <mark>creativity of a marginalised minority group</mark>. He based this on the Japanese <b>samurai</b> community, which lost its respect and prestige, became more active to restore it, and gave rise to several entrepreneurs.</p>
+<h4>Main Points</h4>
+<ol>
+<li>Creativity drives society's transition from a <b>traditional</b> to a <b>modern industrial economy</b>.</li>
+<li>He distinguishes the <b>"creative personality"</b> from the <b>"uncreative personality"</b>. Authoritarian child-rearing produces uncreative personalities.</li>
+<li><b>Status withdrawal:</b> when a group feels other groups do not respect its goals and beliefs, the loss of respect becomes a catalyst for personality change.</li>
+<li><b>Causes of status withdrawal:</b> displacement of a traditional elite, denial of valued symbols, incompatible status symbols due to shifting economic power, and failure to get the expected status after immigrating.</li>
+<li>Elites avoid economic activity, so creative people enter it, become economically powerful, and change the socio-economic system.</li>
+</ol>
+${D.flow("Hagen's status withdrawal process",[["Withdrawal of status respect","displacement, denial of symbols, migration"],["Personality change - creativity",""],["Economic / entrepreneurial activity",""],["Modern economy - status regained",""]],'h')}
+${D.tree("Four responses to status withdrawal","Personality types",[["Retreatist","engages in social activity, retreats from work"],["Ritualist","conforms to rules, cannot improve status"],["Reformist","rebel who wants a new society"],["Innovator","uses creativity toward self-imposed goals"]])}
+<h4>Conclusion</h4>
+<p>According to Hagen, loss of status respect makes marginalised groups creative and entrepreneurial.</p>`,
+src:"Unit-1 part 1.pdf p10-11; factors.pdf p5-6 (6.2); Introduction slides p5"},
+
+{id:"C8",s:"C",tags:[],st:"full",
+q:"Explain Thomas Cochran's Theory of Cultural Values.",
+a:()=>`<h4>Introduction</h4>
+<p>According to <b>Thomas Cochran</b>, entrepreneurship represents a <mark>"model personality"</mark> that comes from role expectations, cultural norms or values, and social sanctions. The entrepreneur embodies the <b>ideal personality of society</b>.</p>
+<h4>Main Points</h4>
+<ol>
+<li>The entrepreneur's performance is shaped by three things: his own <b>attitudes towards work</b>, the <b>requirements of sanctioning organisations</b>, and the <b>operational needs of the job</b>.</li>
+<li><b>Upbringing:</b> modern child-rearing instils values such as high achievement, cooperation, teamwork and rationalism.</li>
+<li><b>Changing roles:</b> the role structure changes as operational requirements shift with long-term changes in <b>population, technology and institutional drift</b>.</li>
+<li><b>Social stratum:</b> in most nations, entrepreneurs have come from a specific socio-economic stratum.</li>
+<li><b>Protestant ethic:</b> the Protestant ethic of the West helped create a new generation of industrialists.</li>
+<li><b>Communities:</b> castes and communities have been foundations of entrepreneurship: the samurai (Japan), the French family structure, <mark>Parsees, Marwaris and Gujaratis (India)</mark>, Yoruba (Nigeria), Kikuya (Kenya), Christians (Lebanon), and Halai Memons (Pakistan).</li>
+</ol>
+${D.mind("Cochran's model personality","Entrepreneur = Model Personality",["Role expectations","Cultural norms & values","Social sanctions","Own attitude to work","Requirements of sanctioning groups","Operational needs of the job"])}
+<h4>Conclusion</h4>
+<p>According to Cochran, cultural values and social role expectations shape the entrepreneurial personality.</p>`,
+src:"Unit-1 part 1.pdf p11"},
+
+{id:"C9",s:"C",tags:[],st:"full",
+q:"Explain P.D. Reynolds' Sociological Theory of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p><b>P.D. Reynolds (1991)</b> identified <mark>four social contexts</mark> that contribute to exploiting and developing entrepreneurial opportunities.</p>
+${D.tree("Reynolds' four social contexts","Sociological Theory (Reynolds)",[["1. Social Networks","trust and goodwill, not opportunism"],["2. Life Course Stage","traits and circumstances of the person"],["3. Ethnic Identification","social background as a driver"],["4. Population Ecology","environmental factors affect survival"]])}
+<h4>1. Social Networks</h4>
+<p>The emphasis is on <mark>social ties and links that foster trust</mark> rather than opportunism. An entrepreneur must not take advantage of others to prosper. Success comes from goodwill and kindness toward others.</p>
+<h4>2. Life Course Stage</h4>
+<p>This involves investigating the <b>traits and circumstances</b> of individuals who choose entrepreneurship. Experiences affect how people behave and think, which inspires them to live fulfilling and meaningful lives.</p>
+<h4>3. Ethnic Identification</h4>
+<p>Sociological background is one of the key <b>"drivers"</b> that motivates someone to launch a business. An individual's potential for advancement is influenced by social background. <mark>Marginalised people</mark> may overcome all obstacles and strive for success because their difficult circumstances drive them to improve their lives.</p>
+<h4>4. Population Ecology</h4>
+<p><b>Environmental factors</b> have a big impact on business viability. The political system, law, government rules, consumers, workers and rivals affect the survival of new ventures and the performance of an entrepreneur.</p>
+<h4>Conclusion</h4>
+<p>Reynolds shows that social ties, life experiences, ethnic background and the environment all shape entrepreneurship.</p>`,
+src:"Unit-1 part 1.pdf p11-12"},
+
+{id:"C10",s:"C",tags:[],st:"full",
+q:"Explain the Opportunity-Based Theory of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>The opportunity-based paradigm was proposed by <b>Howard Stevenson</b> and <b>Peter Drucker</b>. Unlike the Schumpeterian or Austrian school, it assumes that the entrepreneur <mark>takes advantage of opportunities that arise from change</mark> (in technology, customer preferences and so on) rather than bringing about change.</p>
+<h4>Main Points</h4>
+<ol>
+<li><b>Drucker:</b> "the entrepreneur always searches for change, responds to it, and exploits it as an opportunity." Entrepreneurs are more concerned with opportunities than with problems.</li>
+<li><b>Stevenson (1990):</b> broadened Drucker's view by adding <b>resourcefulness</b>. The essence of entrepreneurial management is pursuing opportunities <mark>"without regard to currently controlled resources"</mark>.</li>
+<li><b>Ardichvili et al. (2003):</b> opportunity recognition is <b>not a chance discovery</b> but a continuous, proactive process, from perceiving an idea to a complete business plan.</li>
+<li><b>Individual differences:</b> the ability to recognise opportunities differs because of cognitive attributes, social networks, prior knowledge and experience, and differences in knowledge structure and information processing.</li>
+</ol>
+${D.flow("Three phases of opportunity development (Ardichvili et al.)",[["1. Perception","sense an unfulfilled market need or underemployed resource"],["2. Discovery","recognise a 'fit' between the market need and the resource"],["3. Creation","create a new fit between needs and resources as a business concept"]])}
+<h4>Conclusion</h4>
+<p>According to this theory, the entrepreneur searches for change and exploits it as an opportunity.</p>`,
+src:"Unit-1 part 1.pdf p12-13; Introduction slides p5"},
+
+{id:"C11",s:"C",tags:[],st:"full",
+q:"Explain Kirzner's Theory of Entrepreneurial Alertness.",
+a:()=>`<h4>Introduction</h4>
+<p><b>Israel Kirzner (1973)</b> introduced the entrepreneurial discovery theory. It highlights the entrepreneur's role in <mark>eliminating market price discontinuities and bringing the market closer to equilibrium</mark>.</p>
+<h4>Main Points</h4>
+<ol>
+<li>Entrepreneurs balance demand and supply by <b>recognising and exploiting market imperfections</b>.</li>
+<li>Market imperfections come from <b>bounded rationality</b> and <b>asymmetric distribution of information</b>.</li>
+<li>Driven by profit, the entrepreneur buys items at lower prices and sells them at higher prices. Entrepreneurs <b>set prices</b> rather than simply accept them.</li>
+<li>The opportunity is created by the ignorance or incompetence of incumbent firms.</li>
+<li><b>Entrepreneurial alertness:</b> the <mark>"individual's ability to identify changes, shifts, opportunities and possibilities which are overlooked by others"</mark>. Alert people have an <b>"antenna"</b> that lets them see problems or gaps from limited clues.</li>
+<li>Kirzner (1999): alertness is a "creative and imaginative action" that affects future market transactions.</li>
+</ol>
+${D.flow("Cognitive processes of alertness (Tang et al., 2012)",[["Scanning & search of information",""],["Making associations & connections","between the information gathered"],["Evaluation & judgment",""]])}
+<h4>Conclusion</h4>
+<p>According to Kirzner, the alert entrepreneur spots gaps that others miss and fuels market dynamics.</p>`,
+src:"Unit-1 part 1.pdf p13; Introduction slides p6"},
+
+{id:"C12",s:"C",tags:[],st:"full",
+q:"Explain the Theory of Resources and Capabilities.",
+a:()=>`<h4>Introduction</h4>
+<p>This highly influential theory was first presented by <b>Chandler (1962), Tilles (1963) and Ansoff (1965)</b>. It can be thought of as a <mark>process of strategy formulation</mark>.</p>
+<h4>Main Points</h4>
+<ol>
+<li><b>Examining resources:</b> the entrepreneur examines the company's resources to gauge their potential for value creation, as defined in a business strategy, so as to capture the most value in a sustainable way.</li>
+<li><b>Types of resources:</b> the production process must take into account <b>financial, physical, human, technological, reputational and organisational</b> resources.</li>
+<li><b>Capabilities:</b> the ability of a group to carry out a task or activities. They are the <mark>main source of the company's competitive advantage</mark>.</li>
+<li><b>Routines:</b> a key to success is effective use of routines, i.e. regular, stable, consistent and predictable patterns of coordinated, repeated acts (learning by doing).</li>
+<li><b>Outcome:</b> the creation of sustainable <mark>economies of experience</mark>, which are crucial for entrepreneurs, especially when they launch firms.</li>
+</ol>
+${D.flow("Resources and capabilities theory",[["Resources","financial, physical, human, technological, reputational, organisational"],["Capabilities","ability of a group to carry out tasks"],["Routines","regular, repeated, learning-by-doing"],["Economies of experience & competitive advantage",""]])}
+<h4>Conclusion</h4>
+<p>This theory holds that a firm's resources and capabilities, used through routines, give sustainable competitive advantage.</p>`,
+src:"Unit-1 part 1.pdf p13-14"},
+
+{id:"C13",s:"C",tags:[],st:"full",
+q:"Explain Sarasvathy's Theory of Effectuation.",
+a:()=>`<h4>Introduction</h4>
+<p>The notion of effectuation was developed by <b>Sarasvathy (2001)</b> to explain the nature of the entrepreneurial process. She argues that the process of entrepreneurship is primarily <mark>"effectuation" rather than "causation"</mark>.</p>
+<h4>Causation vs Effectuation</h4>
+<p><b>Causation</b> processes take a specific effect as given and choose the means to achieve it. <b>Effectuation</b> processes take a set of means as given and choose among possible effects using those means.</p>
+${D.two("Causation vs effectuation (meal example)",["CAUSATION",["Effect (goal) is given","Choose the means to reach it","Example: plan a menu for a particular meal, gather the ingredients, cook the intended meal"]],["EFFECTUATION",["Means (resources) are given","Choose among possible effects","Example: check what ingredients are at hand, then combine them into a palatable meal"]])}
+<h4>Main Points</h4>
+<ol>
+<li>The process starts with a set of <b>restricted resources</b>. The entrepreneur chooses outcomes within a preset degree of <mark>manageable (affordable) loss</mark>.</li>
+<li>The entrepreneur weighs the implications and uses existing means to exploit contingencies.</li>
+<li>An entrepreneurial firm makes decisions differently from an established firm.</li>
+</ol>
+<h4>Four Guiding Principles</h4>
+${D.tree("Principles of effectuation","Effectuation",["Affordable loss, not expected returns","Strategic partnerships, not competitive analysis","Use contingencies, not pre-existing knowledge","Control an unpredictable future, not predict it"])}
+<h4>Conclusion</h4>
+<p>Effectuation means acting on existing resources and affordable losses rather than predicting the future.</p>`,
+src:"Unit-1 part 1.pdf p14; Introduction slides p6"},
+
+{id:"C14",s:"C",tags:[],st:"full",
+q:"Explain the Theory of Entrepreneurial Bricolage.",
+a:()=>`<h4>Introduction</h4>
+<p>The behavioural theory of entrepreneurial bricolage was first put forth by the French anthropologist <b>Lévi-Strauss in 1962</b>. It seeks to understand how entrepreneurs act when faced with resource limitations in order to <mark>"manage market uncertainties, survive, and perhaps even flourish despite resource constraints"</mark>.</p>
+<h4>Main Points</h4>
+<ol>
+<li><b>Meaning:</b> bricolage means making things and carrying out plans with <mark>whatever is available</mark>.</li>
+<li><b>Where it is found:</b> it is more common in <b>microbusinesses and SMEs</b>, because resource constraints are more severe there.</li>
+<li><b>Creativity:</b> entrepreneurs' creativity encourages bricolage by building organisational resilience, improvisation, and use of technical systems and artefacts.</li>
+<li><b>Refusing limits:</b> businesses using bricolage <b>refuse to accept the restrictions</b> imposed by a shortage of resources.</li>
+<li><b>Resources used:</b> they gather both <b>material and immaterial</b> resources and build creative strategies, tactics and policies.</li>
+<li><b>Learning:</b> they achieve the desired output through learning, experimentation or even serendipity.</li>
+<li><b>Result:</b> bricolage fosters <mark>catalytic innovations</mark> and scale/growth changes.</li>
+</ol>
+${D.flow("Entrepreneurial bricolage process",[["Resource constraints","common in microbusinesses and SMEs"],["Refuse the limits; gather available material and immaterial resources",""],["Improvise, learn, experiment","creativity and resilience"],["Survive, flourish, catalytic innovation",""]])}
+<h4>Conclusion</h4>
+<p>Bricolage means improvising and building solutions with whatever means are immediately available.</p>`,
+src:"Unit-1 part 1.pdf p14; Introduction slides p6"},
+
+/* ---------- D ---------- */
+{id:"D1",s:"D",tags:["imp","saq"],st:"full",
+q:"Discuss the various types of entrepreneurs / entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>Different people have different aims and visions for their business. The type depends on their <mark>skill level, prior knowledge, experience, the entrepreneurial ecosystem of the region, and preference</mark>.</p>
+${D.mind("Types of entrepreneurship","TYPES OF ENTREPRENEURSHIP",["Small Business","Large Company","Scalable Start-up","International","Social","Environmental (Ecopreneur)","Technopreneur","Imitative","Researcher","Innovation","Cyber"])}
+<ol>
+<li><b>Small Business:</b> most entrepreneurial activity in India. Funded by own savings, friends and family; family-managed. <i>E.g. milk kiosks, grocery stores, salons.</i></li>
+<li><b>Large Company:</b> big business houses with competitive advantage built through R&amp;D. <i>E.g. Apple, Samsung.</i></li>
+<li><b>Scalable Start-up:</b> an innovative idea funded by venture capitalists for its originality and scalability; aims at quick growth and large profits.</li>
+<li><b>International:</b> operations outside India (overseas sales unit, exports); profitable when local demand falls and world demand rises.</li>
+<li><b>Social:</b> solves social problems and prioritises sustainable social change over profit. <i>E.g. non-profit organisations.</i></li>
+<li><b>Environmental (Ecopreneurship):</b> eco-friendly alternatives; environmental value over monetary gain. <i>E.g. audiobooks, impact blogs, SaaS.</i></li>
+<li><b>Technopreneurship:</b> heavily technology-based; takes measured risks.</li>
+<li><b>Imitative:</b> copies existing concepts, often by franchise. <i>E.g. fast food restaurants.</i></li>
+<li><b>Researcher:</b> studies the market thoroughly; relies on data and logic, not intuition.</li>
+<li><b>Innovation:</b> fills market gaps with cutting-edge technology. <i>E.g. Tesla, iPhone.</i></li>
+<li><b>Cyber:</b> online (virtual) business. <i>E.g. online retail, OTT services.</i></li>
+</ol>
+<h4>Conclusion</h4>
+<p>Entrepreneurs range from small family businesses to scalable, innovative and online ventures, depending on skill, experience and ecosystem.</p>`,
+src:"Unit-1 part 1.pdf p15-17 (1.6), p18 (SAQ 3 & 5); Introduction slides p7-8; Teacher IMP note (item 2)"},
+
+{id:"D2",s:"D",tags:["slide"],st:"full",
+q:"What is Innovation Entrepreneurship? What is Research(er) Entrepreneurship?",
+a:()=>`<h4>Innovation Entrepreneurship</h4>
+<p>Innovation Entrepreneurship involves the <mark>identification of market gaps and leveraging cutting-edge technology and innovative thinking</mark> to create goods and services that can improve people's lives.</p>
+<ol>
+<li>Such business ideas are <b>novel and unique</b>; nobody else has thought of them yet.</li>
+<li>It suits people who routinely <b>think outside the box</b> and come up with creative, imaginative solutions.</li>
+<li>It uses cutting-edge technology to fill market gaps.</li>
+<li><b>Examples:</b> Tesla and iPhone.</li>
+</ol>
+<h4>Researcher Entrepreneurship</h4>
+<p>Researcher entrepreneurs <mark>thoroughly investigate the market and available opportunities before launching</mark> the business.</p>
+<ol>
+<li>They believe that being <b>well-informed, organised and prepared</b> gives a higher chance of success.</li>
+<li>They depend less on intuition and gut feeling and more on <b>knowledge, data and logic</b>.</li>
+<li>They follow a <b>detailed plan</b> and study research findings before starting.</li>
+<li>Their aim is to <b>lower the probability of failure</b>.</li>
+</ol>
+${D.two("Innovation vs researcher entrepreneurship",["INNOVATION ENTREPRENEUR",["Identifies market gaps","Cutting-edge technology","Novel, unique ideas","Thinks outside the box","E.g. Tesla, iPhone"]],["RESEARCHER ENTREPRENEUR",["Investigates the market first","Knowledge, data, logic","Less intuition and gut feeling","Detailed plan","Lower probability of failure"]])}
+<h4>Conclusion</h4>
+<p>The innovation entrepreneur succeeds through <b>novelty</b>, while the researcher entrepreneur succeeds through <b>preparation and data</b>.</p>`,
+src:"Unit-1 part 1.pdf p17, p18 (Keywords); Introduction slides p13 (slide questions)"},
+
+{id:"D3",s:"D",tags:["qb"],st:"partial",
+q:"Explain any five entrepreneurial traits.",
+a:()=>`<p class="warn">There is no separate chapter titled "Entrepreneurial Traits" in the provided material. These traits are compiled from the personality-traits phase of evolution, the psychological theories, and the Unit 2 MCQ (risk bearer, innovator, leader).</p>
+<h4>Introduction</h4>
+<p>In the personality-traits phase, trait theories and psychology were used to identify the <mark>characteristics and psychological attributes</mark> of entrepreneurs that are relevant to business venturing.</p>
+${D.mind("Entrepreneurial traits (as named in the material)","ENTREPRENEURIAL TRAITS",["Need for achievement","Internal locus of control","Risk-taking","Innovativeness & creativity","Self-confidence","Drive for independence","Alertness","Tolerance for uncertainty","Leadership"])}
+<ol>
+<li><b>Need for Achievement:</b> a desire and motivation to succeed, progress and grow (McClelland). Such people take on risky, uncertain tasks and are <mark>not swayed by money</mark>. They accept responsibility, set objectives, achieve goals by their own effort and use feedback.</li>
+<li><b>Internal Locus of Control:</b> the belief that one controls one's own outcomes, not luck or fate (Rotter). Most successful entrepreneurs have it, and it is linked with inventiveness and autonomy.</li>
+<li><b>Risk-taking (Risk bearer):</b> risk-taking is an essential prerequisite of entrepreneurship. The entrepreneur bears non-insurable risk, and profit is the reward (Knight). N-Ach also includes a propensity for <b>moderate</b> risk.</li>
+<li><b>Innovativeness and Creativity (Innovator):</b> the entrepreneur creates novel combinations (Schumpeter). <mark>Creativity is the foundation of entrepreneurship</mark> (Shane &amp; Venkataraman).</li>
+<li><b>Self-confidence and Drive for Independence:</b> named among the traits that influence entrepreneurial behaviour, along with the need for power.</li>
+<li><b>Alertness:</b> the ability to spot opportunities overlooked by others, an "antenna" (Kirzner).</li>
+<li><b>Tolerance for uncertainty and ambiguity</b> and <b>Leadership</b> ("Leader" appears as a characteristic in the Unit 2 MCQ).</li>
+</ol>
+<h4>Conclusion</h4>
+<p class="note">Write any five. Note from the material: it is always difficult to identify specific traits that lead to success, and the findings of trait studies were sometimes inconclusive.</p>`,
+src:"Unit-1 part 1.pdf p4, p8, p9-10; Unit 2 p13-14 (Check Your Progress Q1); Question Bank"},
+
+{id:"D4",s:"D",tags:["saq"],st:"partial",
+q:"Explain the factors which motivate people to become entrepreneurs.",
+a:()=>`<p class="warn">No direct answer section exists in the material. This answer is compiled from the theories and factors it covers.</p>
+<h4>Introduction</h4>
+<p>People become entrepreneurs because of a mix of <mark>personal (psychological) drives</mark> and a <mark>supportive environment</mark>.</p>
+${D.mind("Motivating factors for entrepreneurship","WHY PEOPLE BECOME ENTREPRENEURS",["Need for achievement","Loss of status respect","Profit as reward for risk","Opportunity from change","Internal locus of control","Social / ethnic background","Supportive environment"])}
+<ol>
+<li><b>Need for high achievement:</b> the desire to succeed is the ultimate driver (McClelland); it can be developed through training.</li>
+<li><b>Withdrawal of status respect:</b> groups that lose respect turn to entrepreneurship to regain it (Hagen; the samurai of Japan).</li>
+<li><b>Profit as a reward for risk:</b> profit is the reward for bearing uncertainty (Knight).</li>
+<li><b>Opportunities from change:</b> the entrepreneur searches for change and exploits it (Drucker, Stevenson).</li>
+<li><b>Internal locus of control:</b> it is positively linked with the intention to start a business.</li>
+<li><b>Social and ethnic background:</b> marginalised people are driven by difficult circumstances to improve their lives (Reynolds).</li>
+<li><b>Supportive environment:</b> availability of capital and market, social legitimacy, security, government support, infrastructure and training.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Both inner motivation and external conditions motivate people to become entrepreneurs.</p>`,
+src:"Unit-1 part 1.pdf p9-12, p18 (SAQ 2); factors.pdf p3-7"},
+
+/* ---------- E ---------- */
+{id:"E1",s:"E",tags:["qb","imp"],st:"full",
+q:"Explain the process of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>The entrepreneurial process is a series of <mark>five steps</mark> that an entrepreneur follows to start and run a new venture. It is repeated for every new venture.</p>
+${D.flow("Entrepreneurial process",[["1. Identification & Evaluation of the Opportunity","idea generation, study of the market"],["2. Development of the Business Plan","mission, vision, goals, capital, products"],["3. Determination of the Required Resources","finance and human resources"],["4. Management of the Resulting Enterprise","operate the business, management structure"],["5. Harvesting","future growth, development or demise"]])}
+<h4>1. Identification and Evaluation of the Opportunity</h4>
+<p>The process begins with <b>idea generation</b>: the entrepreneur identifies and evaluates business opportunities and studies the market. It is a very difficult task, because the opportunity does not suddenly appear. It is evaluated by asking: <mark>Is it worth investing in? Is it sufficiently attractive? Are the solutions feasible? Is there a competitive advantage? What is the risk?</mark></p>
+<h4>2. Development of the Business Plan</h4>
+<p>A comprehensive business plan acts as a <b>benchmark and evaluation criterion</b> to check whether the organisation is moving towards its goals. Its components are the mission and vision statement, goals and objectives, capital requirement, and description of products and services.</p>
+<h4>3. Determination of the Required Resources</h4>
+<p>The entrepreneur identifies and acquires the sources of <b>finance and human resources</b>, finding investors and the personnel to carry out business activities.</p>
+<h4>4. Management of the Resulting Enterprise</h4>
+<p>Once funds are raised and employees hired, operations begin. First, the entrepreneur decides the <b>management structure or hierarchy</b> needed to solve operational problems.</p>
+<h4>5. Harvesting</h4>
+<p>The entrepreneur decides on the venture's <b>future growth, development or demise</b>. Actual growth is compared with planned growth, and a decision on stability or expansion is taken.</p>
+${D.cycle("Entrepreneurial process - a never-ending cycle","Never-ending process",["Identify & evaluate opportunity","Business plan","Required resources","Manage enterprise","Harvesting"])}
+<h4>Conclusion</h4>
+<p>The process is followed again and again whenever a new venture is taken up, so it is a <b>never-ending process</b>.</p>`,
+src:"Process of entrpreenurship.pdf slides 2-7; Teacher IMP note (item 5); Question Bank"},
+
+{id:"E2",s:"E",tags:["qb"],st:"nf",
+q:"Explain any two techniques of idea screening.",
+a:()=>`<p class="nf">Answer not found in provided study material.</p>
+<p class="note">None of the uploaded files names or explains "idea screening techniques". Only the related points that ARE in the material are given below, as supporting points.</p>
+<h4>Related: evaluating an opportunity (Step 1 of the entrepreneurial process)</h4>
+<p>An entrepreneurial process begins with idea generation, in which the entrepreneur identifies and evaluates business opportunities and studies the market. Once the opportunity has been decided upon, the next step is to <mark>evaluate it</mark>. The entrepreneur evaluates it by continuously asking questions:</p>
+${D.flow("Questions used to evaluate an opportunity (related, from the material)",["Is the opportunity worth investing in?","Is it sufficiently attractive?","Are the proposed solutions feasible?","Is there any competitive advantage?","What is the risk associated with it?"])}
+<h4>Related: researcher approach</h4>
+<p>Researcher entrepreneurs thoroughly investigate the market and opportunities before launching. They depend on <b>knowledge, data and logic</b> rather than intuition, follow a detailed plan, and study research findings to lower the probability of failure.</p>
+<h4>Related: environmental scanning</h4>
+<p>Environmental scanning gives an idea of the enterprise's <b>strengths, weaknesses, opportunities and threats</b>, and of target customers, their needs and shopping habits.</p>
+<p class="note">Upload notes on idea screening techniques to get a complete answer.</p>`,
+src:"Searched all files. Related: Process of entrpreenurship.pdf slide 3; Unit-1 part 1.pdf p17; factors.pdf p6-7"},
+
+/* ---------- F ---------- */
+{id:"F1",s:"F",tags:["imp"],st:"full",
+q:"Explain the factors affecting entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>The establishment and growth of entrepreneurship is <mark>not natural</mark>. Along with the entrepreneur's personal qualities, the country's economic conditions, socio-cultural environment and government also affect it. These factors can have <b>positive (facilitating)</b> or <b>negative (inhibiting)</b> impacts.</p>
+${D.tree("Factors affecting entrepreneurship","FACTORS",[["Economic","capital, labour, raw material, market"],["Social","legitimacy, mobility, marginality, security"],["Psychological","need for achievement, status respect"],["Government / Political","policies, SEZs, MSMED Act 2006"],["Other","infrastructure, environmental scanning, training"]])}
+<h4>1. Economic Factors</h4>
+<p><b>Capital</b> is the life blood of business; <b>labour</b> means quality, cheap labour; <b>raw material</b> must be available at economic cost; the <b>market</b> provides the reward.</p>
+<h4>2. Social Factors</h4>
+<p><b>Legitimacy</b> means the social norms and values; <b>social mobility</b> means openness of society; <b>social marginality</b> means society expects some groups to take entrepreneurial roles; and entrepreneurs need <b>security</b>.</p>
+<h4>3. Psychological Factors</h4>
+<p><b>Motivation for high achievement</b> (McClelland) and <b>status respect</b> (Hagen).</p>
+<h4>4. Government / Political Factors</h4>
+<p>Policies, special economic zones, industrial estates, the <b>MSMED Act 2006</b>, a separate MSME ministry and schemes. Without an active government, entrepreneurship does not grow.</p>
+<h4>5. Other Factors</h4>
+<p><b>Infrastructure</b> (e.g. cold stores), <b>environmental scanning</b> (SWOT, customers) and <b>training</b> (knowledge, skills, N-Ach).</p>
+<h4>Conclusion</h4>
+<p><mark>All factors are interconnected and mutually dependent.</mark> No single factor can bring complete growth; all must contribute positively.</p>`,
+src:"factors.pdf p2-7; Teacher IMP note (item 3)"},
+
+{id:"F2",s:"F",tags:["qb"],st:"full",
+q:"Explain the effect of economic factors on entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>Economic factors contribute to the economic development of the country. They create a conducive environment and provide <mark>economic security and a favourable environment</mark> to an enterprise.</p>
+${D.tree("Economic factors affecting entrepreneurship","ECONOMIC FACTORS",[["Capital","life blood of business"],["Labour","quality and cheap labour"],["Raw Material","availability at economic cost"],["Market","provides the reward"]])}
+<h4>1. Capital</h4>
+<p>Capital is the <mark>life blood of any enterprise</mark> and a major prerequisite. It helps arrange land, machinery, material and manpower, and is a "lubricant to drive the engine of entrepreneurship growth". As the supply of capital increases, entrepreneurship increases (USA, China, Russia, France). Lack of capital is a major reason for failure.</p>
+<h4>2. Labour</h4>
+<p>Adam Smith considered labour an important factor. Quality labour in the right quantity, and cheap labour, boost entrepreneurship. Labour problems can be managed through labour-saving innovation or technology, as Japan and the USA did. The labour issue is <b>easier to manage than the capital issue</b>.</p>
+<h4>3. Raw Material</h4>
+<p>Quality raw material at economic cost is a major determinant of where an enterprise is set up. <i>Example: a furniture maker who has arranged capital and labour will still fail if no timber is available nearby.</i> It directly affects cost of production, but can be managed through innovative supply chains and technology.</p>
+<h4>4. Market</h4>
+<p>The market provides the potential reward. Entrepreneurs can arrange capital, labour and materials but <mark>cannot create a market</mark>, only generate demand. Its nature, size and composition influence entrepreneurs. Distance can be managed by transport. Rapid market development increased the number of entrepreneurs in Germany and Japan.</p>
+<h4>Conclusion</h4>
+<p>Adequate capital, quality labour, a regular supply of raw materials and a developed market together drive entrepreneurship growth.</p>`,
+src:"factors.pdf p3-4 (Section 4); Question Bank"},
+
+{id:"F3",s:"F",tags:["qb"],st:"full",
+q:"Explain the role of social factors impacting entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>Social scientists say economic factors alone are not enough. <mark>"An entrepreneur can never be successful where society fails."</mark> The effect of economic factors itself depends on social factors.</p>
+${D.tree("Social factors affecting entrepreneurship","SOCIAL FACTORS",[["Entrepreneurship Legitimacy","social norms and values"],["Social Mobility","social and geographical"],["Social Marginality","group expects entrepreneurial roles"],["Security","social and economic security"]])}
+<h4>1. Entrepreneurship Legitimacy</h4>
+<p>The system of social norms and values is called the legitimacy of entrepreneurship. Society's approval or rejection influences behaviour. <b>Schumpeter</b> called it the appropriate social climate. The <b>social status of entrepreneurs</b> is its most important element. Low legitimacy may disturb entrepreneurship but not eliminate it, and where government support is high, growth can still occur.</p>
+<h4>2. Social Mobility</h4>
+<p>This includes social and geographical mobility. Entrepreneurs grow in a <mark>flexible and liberal society</mark> that adapts to change. Young educated people who move away often start businesses when they return.</p>
+<h4>3. Social Marginality</h4>
+<p>A social group supports a particular role for an individual because of differences from the main groups (religious, cultural or migration). It is determined by legitimacy and mobility. It is helped by a <b>positive attitude</b> toward a business within the group and a very high degree of <b>unity or solidarity</b>.</p>
+<h4>4. Security</h4>
+<p>Entrepreneurs emerge in a society that gives them security, because they fear losing their assets. Views differ on how much security is needed (a little, moderate, or even turbulent conditions), but security is regarded as a significant factor.</p>
+<h4>Conclusion</h4>
+<p class="note">Also relevant: Reynolds' sociological theory (social networks, life course stage, ethnic identification, population ecology).</p>`,
+src:"factors.pdf p4-5 (Section 5); Unit-1 part 1.pdf p11-12; Question Bank"},
+
+{id:"F4",s:"F",tags:["qb"],st:"full",
+q:"Explain the role of psychological factors impacting entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>Even if the economy and society support entrepreneurship, <mark>if individuals are not self-motivated, all support is wasted</mark>. Psychological theories say a positive attitude and motivation are crucial.</p>
+<h4>1. Motivation for High Achievement</h4>
+<p>According to <b>McClelland's need-achievement theory</b>, motivation for high achievement is the <mark>major psychological determinant</mark>. Entrepreneurship emerges in a society with a high need for achievement. One person succeeds and another fails because of low motivation. This need can be <b>developed through training</b>.</p>
+<h4>2. Status Respect</h4>
+<p>Withdrawal of expected status respect forces a group or individual to choose something different to regain respect, most often entrepreneurship. <b>Hagen (1962)</b> gives the example of Japan's high growth after the withdrawal of status respect from the samurai group.</p>
+${D.flow("Status respect as a psychological factor (Hagen)",[["Causes of withdrawal","displaced from origin, values disrespected, status inconsistency, migration"],["Withdrawal of status respect",""],["Results","work hard for an identity through business, adopt a new adaptive life, become innovative and creative"]])}
+<h4>Other psychological attributes (Unit 1)</h4>
+<p>Personality, locus of control, risk-taking capability, need for achievement, creativity, innovativeness, and tolerance for uncertainty and ambiguity.</p>
+<h4>Conclusion</h4>
+<p>Motivation and status-related drives inside the individual are essential for turning economic and social support into entrepreneurship.</p>`,
+src:"factors.pdf p5-6 (Section 6); Unit-1 part 1.pdf p8-10; Question Bank"},
+
+{id:"F5",s:"F",tags:["qb"],st:"partial",
+q:"Explain the role of cultural factors impacting entrepreneurship.",
+a:()=>`<p class="warn">The factors file has no separate heading for "cultural factors". This answer is compiled from the cultural and socio-cultural content in Unit 1 and the factors file.</p>
+<h4>Introduction</h4>
+<p><b>Anthropological theories</b> deal with the influence of the <mark>culture of the people in the community, its development, customs and beliefs</mark> on the entrepreneurial process.</p>
+${D.mind("Cultural factors affecting entrepreneurship","CULTURAL FACTORS",["Cultural values (Cochran)","Socio-cultural values","Open social & cultural system","Religious / cultural marginality","Child-rearing practices (Hagen)","Communities: Parsees, Marwaris, Gujaratis"])}
+<ol>
+<li><b>Cochran's cultural values:</b> the entrepreneur is a "model personality" shaped by role expectations, cultural norms and social sanctions. Modern upbringing instils high achievement, cooperation, teamwork and rationalism.</li>
+<li><b>Community and religion:</b> the <mark>Protestant ethic</mark> of the West helped create industrialists. Communities such as the samurai (Japan), Parsees, Marwaris and Gujaratis (India), Yoruba (Nigeria) and Halai Memons (Pakistan) have been foundations of entrepreneurship.</li>
+<li><b>Socio-cultural values:</b> environmental, institutional and cultural factors determine how a business starts. Sociocultural values foster an environment where <b>risk-taking, innovation and self-reliance</b> are encouraged.</li>
+<li><b>Openness of the culture:</b> flexibility in the social and cultural system helps; entrepreneurs grow in a liberal society.</li>
+<li><b>Cultural marginality:</b> religious or cultural differences can push groups into entrepreneurial roles.</li>
+<li><b>Child-rearing (Hagen):</b> authoritarian child-rearing produces uncreative personalities.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Culture shapes the entrepreneur's personality and the social support for enterprise, along with economic factors.</p>`,
+src:"Unit-1 part 1.pdf p5, p8, p10-11; factors.pdf p3, p5; Question Bank"},
+
+{id:"F6",s:"F",tags:[],st:"full",
+q:"Explain the role of government and other factors (infrastructure, environmental scanning, training) in entrepreneurship growth.",
+a:()=>`<h4>Government / Political Approach</h4>
+<p>All economic, social and psychological factors are influenced by the <mark>actions of government</mark>. Through policy initiatives (economic policies, social schemes and training programmes), government provides a congenial environment:</p>
+<ol>
+<li>creating basic facilities and services for entrepreneurship,</li>
+<li>developing <b>special economic zones, industrial areas and industrial estates</b>,</li>
+<li>in India, enacting the <b>MSMED Act 2006</b>, establishing a separate <b>Ministry for MSME</b>, and launching attractive schemes.</li>
+</ol>
+<p>If government is inactive, <b>there will be no growth</b> in entrepreneurship.</p>
+${D.tree("Government and other factors","Government & Other Factors",[["Government","SEZs, industrial estates, MSMED Act 2006, schemes"],["Infrastructure","e.g. cold store or warehouse"],["Environmental Scanning","SWOT, customers' needs"],["Training","knowledge, skills, N-Ach"]])}
+<h4>Infrastructural Development</h4>
+<p>Poor infrastructure negatively affects the entrepreneur's psychology, while sound infrastructure can <b>nullify location problems</b>. <i>Example: a small horticulturist in a hill town with no cold store may quit, but a warehouse or cold store boosts such enterprises.</i></p>
+<h4>Environmental Scanning</h4>
+<p>Careful research of the environment gives the enterprise's <b>strengths, weaknesses, opportunities and threats</b>, and the target customers' needs and shopping habits. Entrepreneurs often fail because of poor analysis.</p>
+<h4>Training</h4>
+<p>Initiatives fail because of poor knowledge, weak implementation and lack of skills. Training gives knowledge and skills, <mark>creates a high need for achievement</mark>, motivates initiative, and builds competencies.</p>
+<h4>Conclusion</h4>
+<p>Entrepreneurship flourishes only where government takes proactive steps, supported by infrastructure, environmental analysis and training.</p>`,
+src:"factors.pdf p6-7 (Sections 7, 8, 9)"},
+
+/* ---------- G ---------- */
+{id:"G1",s:"G",tags:["imp"],st:"full",
+q:"Explain institutional support to entrepreneurs / the major entrepreneurship support system in India.",
+a:()=>`<h4>Introduction</h4>
+<p>A support system is the <mark>backbone</mark> for an enterprise to be successful. In India, several institutions and schemes support entrepreneurs.</p>
+${D.mind("Major entrepreneurship support institutions in India","INSTITUTIONAL SUPPORT",["Startup India (2016)","Atal Innovation Mission","MSME Programme","NSDC","SIDBI","NABARD (1982)","Invest India","R&D Support"])}
+<ol>
+<li><b>Startup India:</b> launched on <mark>16 January 2016</mark> to promote and support start-ups by providing bank finance; organised by the Department for Promotion of Industry and Internal Trade.</li>
+<li><b>Atal Innovation Mission (AIM):</b> set up by <b>NITI Aayog in 2016</b> to build an environment of innovation and entrepreneurship across schools, institutes and industries, including MSMEs.</li>
+<li><b>MSME Support and Development Programme:</b> supports micro, small and medium enterprises for the growth of the sector.</li>
+<li><b>NSDC (National Skill Development Corporation):</b> gives funding support to enterprises to build capacity through resources, technical assistance and knowledge management.</li>
+<li><b>SIDBI:</b> an independent financial institution aiding MSMEs, which contribute significantly to production, employment and exports.</li>
+<li><b>NABARD:</b> India's apex development bank, set up in <mark>1982</mark> under an Act of Parliament for sustainable agriculture and rural development. It gives working capital, term and crop loans.</li>
+<li><b>Invest India:</b> the National Investment Promotion and Facilitation Agency; helps establish, operate and expand businesses.</li>
+<li><b>Research &amp; Development Support:</b> efforts to gather knowledge to create new products and improve existing ones.</li>
+</ol>
+<p><b>Other schemes in the material:</b> Mudra Bank, Startup India Seed Fund, Digital India, Stand-Up India, DDU-GKY, RSETI and Make in India.</p>
+<h4>Conclusion</h4>
+<p>These institutions provide finance, skills, innovation support and a favourable environment for entrepreneurs.</p>`,
+src:"Unit 2 ENTREPRENEURSHIP SUPPORT SYSTEM.pdf p10, p12-13 (2.6-2.8); Teacher IMP note (item 4)"},
+
+{id:"G2",s:"G",tags:["saq"],st:"full",
+q:"What is an entrepreneurship support system? Explain its major components.",
+a:()=>`<h4>Meaning</h4>
+<p>An entrepreneurship support system refers to the <mark>infrastructure, resources and services available to assist entrepreneurs at different stages</mark>, from the idea phase to establishing and scaling a business. It includes institutions, programmes and stakeholders. Support can be <b>tangible</b> (money, material) or <b>intangible</b> (emotional, psychological). Without it, there is no entrepreneurship at all.</p>
+${D.mind("Components of the entrepreneurship support system","SUPPORT SYSTEM",["Financial support & capital","Training & skill development","Networking & market access","Regulatory & policy support","Technical & technological","Legal & advisory","Marketing & branding","Diverse entrepreneurs","Export support"])}
+<ol>
+<li><b>Financial support:</b> bank loans, microfinance, VC, angel investors, grants, impact investing.</li>
+<li><b>Training and capacity building:</b> workshops, business development programmes, online learning, mentorship, incubators and accelerators.</li>
+<li><b>Networking and market access:</b> chambers of commerce, trade fairs, co-working spaces, pitching events, B2B marketplaces.</li>
+<li><b>Regulatory and policy support:</b> simplified registration, tax incentives, IP protection, supportive labour laws.</li>
+<li><b>Technical and technological support:</b> innovation hubs, R&amp;D funding, IT support.</li>
+<li><b>Legal and advisory services:</b> legal clinics, business consulting, accounting and tax support.</li>
+<li><b>Marketing and branding support:</b> digital marketing tools, government/NGO marketplaces, PR support.</li>
+<li><b>Support for diverse entrepreneurs:</b> women, youth and minority, and rural programmes.</li>
+<li><b>Market access and export support:</b> e-commerce, export assistance, export credit agencies.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>The support system is the <b>platform on which an entrepreneur builds the enterprise</b>, from start-up to maturity.</p>`,
+src:"Unit 2 p1-8 (2.1, 2.3, 2.4), p14 (Check Your Progress Q4)"},
+
+{id:"G3",s:"G",tags:["qb"],st:"full",
+q:"Explain the availability of financial support and access to capital for startups.",
+a:()=>`<h4>Introduction</h4>
+<p>Access to economic resources is a critical factor for the growth, innovation and sustainability of startups. <mark>Financial constraints are one of the biggest hurdles for entrepreneurs.</mark> Various sources of finance meet different needs.</p>
+${D.tree("Sources of financial support for startups","FINANCIAL SUPPORT",[["Bank Loans & Microfinance","expansion, working capital"],["Venture Capital","funds in exchange for equity"],["Angel Investors","high-net-worth individuals"],["Govt. Grants & Subsidies","non-repayable"],["Impact Investing","social + financial return"]])}
+<ol>
+<li><b>Bank Loans and Microfinance:</b> banks lend for expansion, working capital or equipment. <b>Microfinance</b> serves low-income and underprivileged people who lack financial services.</li>
+<li><b>Venture Capital:</b> funds for start-ups and emerging companies <mark>in exchange for equity</mark>, provided at early stages to firms with high growth potential.</li>
+<li><b>Angel Investors:</b> high-net-worth individuals who back start-ups in early stages for equity or convertible debt. They suit start-ups with promising ideas but limited access to institutional funding.</li>
+<li><b>Government Grants and Subsidies:</b> <b>non-repayable</b> assistance for specific sectors or communities; subsidies reduce costs.</li>
+<li><b>Impact Investing:</b> investment for social or environmental impact plus financial return, through stocks, bonds, mutual funds or microloans.</li>
+</ol>
+<h4>Supporting Institutions</h4>
+<p><b>SIDBI, Mudra Bank, Startup India Seed Fund Scheme</b>, NABARD (working capital, term and crop loans) and <b>Stand-Up India</b> (women and underrepresented groups). Self-help groups (SHGs) give women microloans. <b>Tax incentives</b> improve early-stage cash flow.</p>
+<h4>Conclusion</h4>
+<p>A range of financial sources helps startups overcome their biggest hurdle, the lack of capital.</p>`,
+src:"Unit 2 p3-4, p6, p10-12; Question Bank"},
+
+{id:"G4",s:"G",tags:["qb"],st:"full",
+q:"Explain technical and technological support for startups.",
+a:()=>`<h4>Introduction</h4>
+<p>Technical and technological support means <mark>spaces designed to foster creativity, collaboration and innovation</mark>. They often house startups, researchers and academic institutions.</p>
+${D.tree("Technical and technological support","TECHNICAL SUPPORT",[["Innovation Hubs & Research Parks","support for research, innovation, product development"],["R&D Funding","finance for research and new products"],["IT Support & Digital Assistance","software, hardware, digital tools"]])}
+<h4>Main Components</h4>
+<ol>
+<li><b>Innovation Hubs and Research Parks:</b> these give entrepreneurs the financial support available for research, innovation and product development.</li>
+<li><b>Access to R&amp;D Funding:</b> financial support for <mark>research, innovation and product development</mark>.</li>
+<li><b>IT Support and Digital Assistance:</b> help to use IT solutions (software, hardware and digital tools) for business needs.</li>
+</ol>
+<h4>Related Technological Support</h4>
+<ol>
+<li><b>Incubators and Accelerators:</b> provide infrastructure, resources and short, intensive programmes for rapid growth.</li>
+<li><b>Digital India:</b> entrepreneurs in rural and remote areas can access technology, <b>e-commerce, digital payments</b> and marketing platforms.</li>
+<li><b>Technology and Innovation:</b> streamlines operations, reaches customers and helps adapt to market changes.</li>
+<li><b>Atal Innovation Mission</b> and <b>R&amp;D Support</b>.</li>
+<li><b>Digital marketing training and tools</b> and <b>e-commerce platforms</b>.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Technological support helps startups innovate, go digital and scale.</p>`,
+src:"Unit 2 p4, p6, p7-10, p12-13; Question Bank"},
+
+{id:"G5",s:"G",tags:["saq"],st:"full",
+q:"Describe the objectives of the entrepreneurship support system.",
+a:()=>`<h4>Introduction</h4>
+<p>The entrepreneurship support system aims to <mark>nurture entrepreneurial efforts by providing critical resources and a favourable environment</mark>.</p>
+${D.tree("Objectives of the entrepreneurship support system","OBJECTIVES",["Promote Innovation & Entrepreneurship","Capacity Building & Skill Development","Access to Funding","Business Development & Growth","Sustainable & Inclusive Practices"])}
+<ol>
+<li><b>Promote Innovation and Entrepreneurship:</b> foster innovation by providing <b>resources, guidance and a sustaining environment</b> for aspiring entrepreneurs to develop new ideas and business models.</li>
+<li><b>Capacity Building and Skill Development:</b> offer training and workshops to build <b>technical, managerial and leadership</b> abilities for business challenges.</li>
+<li><b>Access to Funding and Financial Resources:</b> give access to capital through <mark>grants, loans, venture capital, angel investors and crowdfunding</mark>.</li>
+<li><b>Support for Business Development and Growth:</b> provide resources for marketing, sales, legal and operational needs so businesses scale and sustain growth.</li>
+<li><b>Encourage Sustainable and Inclusive Business Practices:</b> support enterprises focused on <b>social impact, environmental sustainability and inclusive employment</b>.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>These objectives help people turn ideas into viable, successful businesses and create a sustainable economic impact.</p>`,
+src:"Unit 2 p8-9 (2.5), p13 (2.9), p14 (Check Your Progress Q5)"},
+
+{id:"G6",s:"G",tags:["saq"],st:"full",
+q:"What is the importance of entrepreneurship in India? How is it important for job creation and economic growth?",
+a:()=>`<h4>Introduction</h4>
+<p>Entrepreneurship reduces major problems such as <mark>vast unemployment, poverty, heavy dependence on agriculture and regional imbalances</mark>. Countries are shifting from agriculture-driven to entrepreneurship-driven economies.</p>
+${D.mind("Importance of entrepreneurship in India","IMPORTANCE IN INDIA",["Job creation & economic growth","Innovation & competitiveness","Access to funding","Digital support","Women & marginalised groups","Rural & small-scale","Community & social impact","Environmental responsibility"])}
+<ol>
+<li><b>Economic Growth and Job Creation:</b> India has a <mark>large working-age population</mark>. Entrepreneurship creates jobs and boosts economic activity, and supporting startups and SMEs reduces dependence on traditional sectors for employment.</li>
+<li><b>Innovation and Competitiveness:</b> solutions in technology, agriculture and healthcare enhance India's global competitiveness.</li>
+<li><b>Access to Funding:</b> venture capital, angel investment, grants; SIDBI, Mudra Bank, Startup India Seed Fund.</li>
+<li><b>Digital and Technological Support:</b> Digital India helps rural entrepreneurs through e-commerce and digital payments.</li>
+<li><b>Women and Marginalised Groups:</b> Stand-Up India gives finance and mentorship.</li>
+<li><b>Rural and Small-Scale:</b> prevents urban migration and boosts rural economies (DDU-GKY, RSETI).</li>
+<li><b>Community Support and Social Impact:</b> ventures in green technology, education and health gain community support.</li>
+<li><b>Environmental Responsibility:</b> eco-friendly practices attract customers and save costs.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>The USA and China enjoy economic and social benefits from entrepreneurship growth. For India too, it drives jobs, growth and inclusive development.</p>`,
+src:"Unit 2 p9-10 (2.6), p14 (Q6); factors.pdf p2; Unit-1 part 1.pdf p18 (SAQ 4)"},
+
+{id:"G7",s:"G",tags:[],st:"full",
+q:"Explain the support and sustainability of entrepreneurship.",
+a:()=>`<h4>Introduction</h4>
+<p>Supporting and sustaining entrepreneurship involves <mark>creating a conducive environment where entrepreneurs can thrive over the long term</mark>.</p>
+${D.mind("Support and sustainability of entrepreneurship","SUSTAINABLE ENTREPRENEURSHIP",["Access to financing","Skill development","Mentorship & networking","Market access & diversification","Supportive policy","Training programmes","Regulatory support"])}
+<ol>
+<li><b>Access to Financing:</b> microfinance, venture capital, grants and loans. Women benefit from dedicated funds and microloans through <b>self-help groups (SHGs)</b>.</li>
+<li><b>Skill Development and Training:</b> financial literacy, digital marketing, operations and management. Continuous learning helps adaptation and productivity.</li>
+<li><b>Mentorship and Networking:</b> guidance, shared experiences, partnerships and new markets.</li>
+<li><b>Market Access and Diversification:</b> local, national and international markets <mark>reduce dependence on a single market</mark> and expand revenue.</li>
+<li><b>Supportive Policy and Regulatory Environment:</b> fewer regulatory burdens, tax incentives, and policies for specific groups such as women.</li>
+<li><b>Training and Skill Development:</b> training programmes, workshops and incubators build business management, finance and marketing skills.</li>
+<li><b>Policy and Regulatory Support:</b> simplified procedures; <b>Make in India, Startup India</b> and ease-of-doing-business reforms.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>By investing in support systems, communities create a sustainable economic impact, stimulate innovation and strengthen resilience against economic downturns.</p>`,
+src:"Unit 2 p11-13 (2.7, 2.9)"},
+
+/* ---------- H ---------- */
+{id:"H1",s:"H",tags:["qb","imp"],st:"full",
+q:"What is Venture Capital? What are the limitations associated with risk capital equity to the startups?",
+a:()=>`<h4>Meaning of Venture Capital</h4>
+<p>Venture capital may be defined as <mark>long-term equity investment in new business which has potential for tremendous growth</mark> in business and financial returns.</p>
+<p>Since venture capital is part of long-term <b>owned funds</b>, the investors who provide it bear the risk of the business. That is why it is also called <mark>risk capital</mark>.</p>
+<p>Venture capital is provided by <b>high net worth investors, investment banks and commercial banks</b> who invest in young, rapidly growing companies that could become economic powerhouses. Unit 2 describes it as funds given to start-ups <b>in exchange for equity</b>.</p>
+${D.flow("Concept of venture capital (risk capital)",[["Investors","HNIs, investment banks, commercial banks"],["Long-term equity investment","owned funds, investor bears the risk"],["New / young high-growth business","start-up gets capital; investor gets a stake"]])}
+<h4>Limitations of Risk Capital Equity</h4>
+${D.tree("Limitations of venture capital","LIMITATIONS",[["Dilution of Ownership & Control","VC takes a stake in ownership"],["Early Redemption","within 3-5 years, for capital gains"],["Long & Complicated Process","detailed business plan analysed"]])}
+<ol>
+<li><b>Dilution of Ownership and Control of Promoters:</b> the venture capitalist provides huge equity capital to the start-up <mark>in return for a stake in the ownership</mark> of the venture capital undertaking, so the promoters lose part of their ownership and control.</li>
+<li><b>Early Redemption of Venture Capital:</b> the investor may decide to redeem the investment within <b>3 to 5 years</b> of inception, because the investor's primary focus is to earn <b>capital gains</b>.</li>
+<li><b>Long and Complicated Process:</b> the start-up's promoter must submit a <b>detailed business plan</b>, which the venture capital investors then analyse from various angles, making the process long and complicated.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Venture capital is valuable risk capital for start-ups, but it costs the promoters some ownership and control and involves a lengthy process.</p>`,
+src:"ing.pdf (Financing Venture Capital) slides 3, 6; Unit 2 p3; Teacher IMP note (item 6); Question Bank 5-mark Q1"},
+
+{id:"H2",s:"H",tags:["qb","imp"],st:"full",
+q:"Venture capital finance provides lots of benefits to venture capital undertakings. Explain these benefits in detail.",
+a:()=>`<h4>Introduction</h4>
+<p>Venture capital is long-term equity (risk capital) given to new, high-growth businesses. Besides finance, it gives the <b>venture capital undertaking</b> (the start-up) several benefits.</p>
+${D.mind("Benefits of venture capital","BENEFITS OF VENTURE CAPITAL",["Opportunity","Guidance","Networks","No obligation to repay","Easy to identify"])}
+<ol>
+<li><b>Opportunity:</b> venture capital gives the undertaking an <mark>opportunity to set up a new business carrying higher risk</mark> and to undertake expansion of the business.</li>
+<li><b>Guidance:</b> besides long-term finance, venture capital brings <b>valuable guidance and expertise</b>. A member of the venture capital fund or firm is usually appointed as a <mark>nominated director</mark> of the start-up.</li>
+<li><b>Networks:</b> venture capitalists have a <b>large network of connections</b> in the business world, which indirectly helps start-ups grow and succeed.</li>
+<li><b>No Obligation:</b> there is <mark>no obligation to repay</mark> the venture capital if the start-up fails or closes down. Hence venture capital is essential for start-ups and high-risk ventures.</li>
+<li><b>Easy to Identify:</b> venture capital funds are <b>registered with the regulator</b> and documented in directories, which reduces the time, effort and money spent searching.</li>
+</ol>
+<h4>Additional advantages (from the features)</h4>
+<ul>
+<li>It suits <b>technically or professionally qualified</b> promoters who lack funds.</li>
+<li>It supports <b>innovation</b> in technology, production process and product design, giving an edge over competitors.</li>
+<li>It is <b>long-term</b> finance.</li>
+</ul>
+<h4>Conclusion</h4>
+<p>Venture capital gives start-ups not only money but also guidance, networks and freedom from repayment, which helps develop entrepreneurship.</p>`,
+src:"ing.pdf slides 4-5; Teacher IMP note (item 6); Question Bank 5-mark Q4"},
+
+{id:"H3",s:"H",tags:["qb"],st:"full",
+q:"Explain the pros and cons of venture capital finance.",
+a:()=>`<h4>Introduction</h4>
+<p>Venture capital is <mark>long-term equity investment (risk capital)</mark> in new businesses with high growth potential. It has both advantages and limitations.</p>
+${D.two("Pros and cons of venture capital",["PROS (Benefits)",["Opportunity to start a high-risk business and expand","Guidance; nominated director","Networks of business connections","No obligation to repay if the venture fails","Easy to identify (registered)","Long-term finance for innovative, qualified promoters"]],["CONS (Limitations)",["Dilution of ownership and control","Early redemption in 3-5 years","Long and complicated process","High risk (feature)","Illiquid: locked for 3-5 years (feature)"]])}
+<h4>Pros</h4>
+<ol>
+<li><b>Opportunity:</b> set up a high-risk new business and expand it.</li>
+<li><b>Guidance:</b> expertise; a VC member serves as <b>nominated director</b>.</li>
+<li><b>Networks:</b> large business connections help growth.</li>
+<li><b>No obligation:</b> <mark>no repayment if the start-up fails</mark>.</li>
+<li><b>Easy to identify:</b> registered with the regulator, listed in directories.</li>
+</ol>
+<h4>Cons</h4>
+<ol>
+<li><b>Dilution of ownership and control:</b> the VC takes a stake in return for equity.</li>
+<li><b>Early redemption:</b> within 3-5 years, as investors focus on <b>capital gains</b>.</li>
+<li><b>Long and complicated process:</b> a detailed business plan is analysed from various angles.</li>
+<li class="note">High risk and 3-5 year illiquidity are drawn from the Features slide; the material lists only three formal limitations.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Venture capital suits high-risk, innovative start-ups, but promoters must accept some loss of control and a lengthy selection process.</p>`,
+src:"ing.pdf slides 4-6; Question Bank (additional topic)"},
+
+{id:"H4",s:"H",tags:[],st:"full",
+q:"Explain the features of venture capital finance.",
+a:()=>`<h4>Introduction</h4>
+<p>The venture capital market comprises new entrepreneurs and enterprises, banks, venture capital funds, high net worth individuals and the regulator. Venture capital finance <mark>helps develop entrepreneurship and exploits untested technology</mark>.</p>
+${D.tree("Features of venture capital finance","FEATURES",[["Competent & Capable","qualified promoters lacking funds"],["Innovations","technology, process, product design"],["High Risk, High Return",""],["Long Term","locked 3-5 years, illiquid"]])}
+<ol>
+<li><b>Competent and capable promoters:</b> venture capital is given to promoters who are <mark>technically and/or professionally qualified, competent and capable</mark> of launching and running a new business but do not have adequate funds.</li>
+<li><b>Innovations:</b> the venture brings many innovations in the <b>use of technology, production process and product design</b>, which gives it an advantage over competitors.</li>
+<li><b>High risk and high return:</b> venture capital investment carries <mark>high risk and high return</mark>, so only investors prepared to take high risk and expecting high return invest.</li>
+<li><b>Long term:</b> the investment is for a longer period. It is initially <b>locked up for about 3 to 5 years</b> from the date of investment, and during this period it is considered <b>illiquid</b>.</li>
+</ol>
+<h4>Conclusion</h4>
+<p>Venture capital is long-term, high-risk, high-return finance for innovative ventures run by competent promoters.</p>`,
+src:"ing.pdf slides 2, 4"},
+
+{id:"H5",s:"H",tags:[],st:"full",
+q:"Differentiate between Venture Capital Finance and Private Equity Finance.",
+a:()=>`<h4>Introduction</h4>
+<p><b>Venture capital finance</b> means small investments used to grow companies in their <mark>early stage</mark>. <b>Private equity finance</b> means investment in firms that are <mark>not listed on any recognised stock exchange</mark>.</p>
+${D.flow("Stage of investment: VC vs PE",[["VENTURE CAPITAL","initial stage, high risk, many firms"],["PRIVATE EQUITY","later stage, low risk, few companies"]],'h')}
+<h4>Differences</h4>
+<table><tr><th>Parameters</th><th>Venture Capital Finance</th><th>Private Equity Finance</th></tr>
+<tr><td>Meaning</td><td>Small investments to grow companies in their early stage</td><td>Investments in firms not listed on any recognised stock exchange</td></tr>
+<tr><td>Investment stage</td><td>Initial stage</td><td>Later stage</td></tr>
+<tr><td>Fund invested</td><td>In a large number of firms</td><td>In a few companies</td></tr>
+<tr><td>Types of industries</td><td>High technology, energy conservation, etc. that need initial investment</td><td>All types of industries</td></tr>
+<tr><td>Focus on</td><td>Management skill</td><td>Corporate governance</td></tr>
+<tr><td>Risk involved</td><td>High</td><td>Low</td></tr>
+<tr><td>Capital required</td><td>For day-to-day operations and business growth</td><td>For business expansion and growth</td></tr>
+</table>
+<h4>Conclusion</h4>
+<p>Venture capital supports <b>young, high-risk</b> companies in many firms, while private equity supports <b>established unlisted</b> companies at a later stage with lower risk.</p>`,
+src:"ing.pdf slides 7-10 (image table)"},
+
+{id:"H6",s:"H",tags:[],st:"full",
+q:"Explain the structure of the venture capital industry. Why is venture capital called risk capital?",
+a:()=>`<h4>Venture Capital Market</h4>
+<p>The venture capital market comprises <mark>new entrepreneurs and enterprises, banks, venture capital funds, high net worth individuals and the regulator</mark>. To encourage entrepreneurs to set up new enterprises based on scientific technology and knowledge, it is necessary to promote the venture capital market.</p>
+<h4>Structure of the Venture Capital Industry</h4>
+<p>A venture capital fund can be formed as a <b>Trust</b>, a <b>Company</b> or a <b>Body Corporate</b>.</p>
+${D.tree("Structure of the venture capital industry","VENTURE CAPITAL FUND (Trust / Company / Body Corporate)",["Financial institutions","Banks","Pension funds","Corporations","High net worth individuals"])}
+<p>Investors in venture capital funds are:</p>
+<ol>
+<li>Financial institutions</li>
+<li>Banks</li>
+<li>Pension funds</li>
+<li>Corporations</li>
+<li>High net worth individuals, etc.</li>
+</ol>
+<h4>Why is it called Risk Capital?</h4>
+<p>Venture capital is <b>long-term equity investment</b> in new businesses with high growth potential. Since it is part of long-term <mark>owned funds</mark>, the investors who provide it <mark>bear the risk in the business</mark>. There is no obligation to repay if the start-up fails, and the investment carries high risk and high return. Hence it is called <b>risk capital</b>.</p>
+<h4>Conclusion</h4>
+<p>Venture capital helps develop entrepreneurship and exploits <b>untested technology</b> to produce goods or provide technology-oriented services.</p>`,
+src:"ing.pdf slides 2-5, 11"},
+
+{id:"H7",s:"H",tags:["qb","imp"],st:"nf",
+q:"Explain the Early Stages of Financing.",
+a:()=>`<p class="nf">Answer not found in provided study material.</p>
+<p class="note">No uploaded file has a section on the stages of venture financing (early stages or stages of venture development). The teacher's IMP list names "Stage of venture development and finances", but no notes or slides for it were uploaded. Only the related points that ARE in the material are given below.</p>
+<h4>Related points from the material</h4>
+<ol>
+<li>Venture capital finance is described as <mark>"small investments used to grow the companies in their early stage"</mark>, and its investment stage is the <b>initial stage</b>.</li>
+<li>In the <b>early stage</b>, VC capital is required <b>"for day-to-day operations and business growth"</b>; the risk is <b>high</b> and the focus is on <b>management skill</b>.</li>
+<li>VC suits industries such as <b>high technology and energy conservation</b> that need initial investment.</li>
+<li>VC firms give <b>equity financing</b> to start-ups and companies functioning at early stages with high growth potential.</li>
+<li><b>Angel investors</b> back start-ups, usually in the <mark>early stages</mark>, in exchange for equity or convertible debt.</li>
+<li><b>Tax incentives and subsidies</b> help start-ups manage resources during the <b>early stages</b>.</li>
+</ol>
+${D.tree("Early-stage finance sources mentioned in the material (related only)","Early-stage start-up",[["Venture Capital","equity, initial stage, high risk"],["Angel Investors","equity / convertible debt"],["Govt. Grants, Subsidies, Tax Incentives","help manage early-stage resources"]])}
+<p class="note">Upload notes on "Stages of Venture Financing" to get a complete answer.</p>`,
+src:"Searched all files. Related: ing.pdf slides 8-10; Unit 2 p3-4, p6; Teacher IMP note (item 7); Question Bank 5-mark Q2"},
+
+{id:"H8",s:"H",tags:["qb","imp"],st:"nf",
+q:"Explain the Later Stages of Financing by venture funding firms for entrepreneurs, with suitable examples.",
+a:()=>`<p class="nf">Answer not found in provided study material.</p>
+<p class="note">The uploaded files do not explain the later stages of venture financing and give no examples. Only the related points that ARE in the material are given below.</p>
+<h4>Related points from the material</h4>
+<ol>
+<li>In the VC vs PE comparison, <b>Private Equity</b> invests at the <mark>later stage</mark>, in a few companies, in all types of industries, with <b>low risk</b> and a focus on <b>corporate governance</b>.</li>
+<li>At the later stage, capital is <mark>required for business expansion and growth</mark>.</li>
+<li>Venture capital gives the undertaking an opportunity to <b>undertake expansion of business</b>.</li>
+<li>VC investors may <b>redeem their investment within 3-5 years</b>, since their primary focus is capital gains.</li>
+<li>In the entrepreneurial process, <b>harvesting</b> is when the entrepreneur compares actual with planned growth and decides on stability or <b>expansion</b>.</li>
+</ol>
+${D.two("Early vs later stage, as given in the VC vs PE table (related only)",["INITIAL STAGE (VC)",["Many firms","High technology, energy conservation","High risk","Management skill","Day-to-day operations and growth"]],["LATER STAGE (PE)",["Few companies","All types of industries","Low risk","Corporate governance","Expansion and growth"]])}
+<p class="note">No examples of later-stage financing appear anywhere in the material. Upload the relevant notes to complete this answer.</p>`,
+src:"Searched all files. Related: ing.pdf slides 5-6, 9-10; Process of entrpreenurship.pdf slide 7; Teacher IMP note (item 7); Question Bank 5-mark Q5"}
+];
+
+/* =================== BUILD BOOK =================== */
+/* =================== ORDER: Question Bank first =================== */
+const MUST = ["A2","F3","F4","G4","B1","A3","F5","G3","E1","H1","H7","D3","H2","H8"];
+Q.forEach((q,i)=>q._i=i);
+Q.sort((a,b)=>{
+  const ia=MUST.indexOf(a.id), ib=MUST.indexOf(b.id);
+  if(ia>-1||ib>-1) return (ia<0?999:ia)-(ib<0?999:ib);
+  return a._i-b._i;
+});
+Q.forEach((q,i)=>{ q.no=i+1; q.must=MUST.includes(q.id); });
+const NO = Object.fromEntries(Q.map(q=>[q.id,q.no]));
+
+/* =================== REAL-WORLD EXAMPLES =================== */
+const EXL = {
+  mat:["t-mat","From your material"],
+  mix:["t-mix","Material + illustration"],
+  ill:["t-ill","Illustrative - added for understanding, not from material"]
+};
+const EX = {
+A1:["ill",`Imagine a young professional who leaves a salaried job and uses personal savings to open a cloud kitchen, because she notices that office workers nearby want healthy home-style food delivered. She has no guaranteed income (she <b>assumes risk</b>), she spotted an unmet need (she <b>explores an opportunity</b>), and her kitchen serves food that did not exist in that area before (she <b>creates value</b>). This matches the definition: the capacity to assume risk, accountability and challenges to explore opportunities and create value.`],
+A2:["mix",`A vegetable trader who buys at a fixed price in the wholesale mandi and sells in the retail market at a price he cannot know in advance is exactly Cantillon's <b>risk-bearer</b>. A factory owner who brings together land, workers and machines is Say's <b>coordinator of factors of production</b>. Products such as Tesla and the iPhone (examples given in the material) show Schumpeter's <b>innovator</b>, who brings something new to the market.`],
+A3:["ill",`Think of studying one start-up founder through each phase. Early economists would ask how she <b>bore risk and coordinated resources</b> (rational agent). Trait researchers would ask whether she has a <b>need for achievement or self-confidence</b> (personality traits). Later scholars would ask <b>how she spotted the gap</b> in the market (opportunity recognition), and then which <b>incubator, family network or government scheme</b> helped her (institutions and networks). Today the constructivist approach looks at <b>all of these together</b>: the person, the project and the environment.`],
+A4:["mix",`The material gives Tesla as an example of innovation entrepreneurship. An electric car is a way of "producing an old one (a car) in a new way", which is exactly how Schumpeter says an entrepreneur <b>revolutionizes the pattern of production</b>. In daily life, an online grocery app that delivers from local shops is also a <b>new business model</b> that changes how an old service is provided.`],
+B1:["mix",`The material says <b>Paul Buchheit created Gmail</b> as an employee, and <b>Ken Kutaragi created PlayStation at Sony</b>. The company paid for the work, bore the risk and owns the product, so they were <b>intrapreneurs</b>. By contrast, a person who quits a job and launches their own gaming studio with their own savings bears all the risk and owns the business. That person is an <b>entrepreneur</b>.`],
+B2:["ill",`A person who decides to open a chain of restaurants, invests the money and bears the loss if it fails is the <b>entrepreneur</b>. The branch manager who is paid a monthly salary to handle staff rosters, stock and daily customer service is the <b>manager</b>. The owner looks outward at market trends and new locations, while the manager looks inward at running the branch efficiently.`],
+C1:["mix",`Suppose a student in India wants to start a business. An <b>economist</b> would study her access to capital and market, a <b>psychologist</b> her need for achievement and locus of control, a <b>sociologist</b> her family and social network, and an <b>anthropologist</b> her community's culture. The material notes, for example, the business tradition of Marwaris, Gujaratis and Parsees. Each theory explains a different part of the same entrepreneur.`],
+C2:["mix",`The material lists the iPhone and Tesla as innovation entrepreneurship. The iPhone combined a phone, music player and internet device into one product, a <b>novel combination</b> of existing technologies. An electric car introduced a <b>new product and new process</b> into an old industry. The inventor of a new battery chemistry may only publish it, but the entrepreneur who <b>turns it into a saleable product</b> is Schumpeter's innovator.`],
+C3:["ill",`A student who keeps setting higher targets, prepares on her own, welcomes feedback from teachers and chooses challenging but achievable goals shows a <b>high need for achievement</b>. When she later starts a coaching centre, her main motivation is the <b>satisfaction of building something successful</b>, not only the money. This matches McClelland's five components of N-Ach.`],
+C4:["ill",`Consider a founder who launches a new app that changes how people pay small shops. Schumpeter would say she is an <b>innovator creating a new combination</b> that disturbs the old market. McClelland would ask <b>why</b> she took this risk and answer: her strong <b>need for achievement</b>. One explains the economic effect, the other the psychological drive.`],
+C5:["ill",`Two shop owners face falling sales. The first says, "It is just bad luck this season," and waits (<b>external locus of control</b>). The second says, "My display and prices must change," and starts home delivery and online orders (<b>internal locus of control</b>). The second behaves like the successful entrepreneurs described in the theory.`],
+C6:["ill",`A person who keeps money in a bank fixed deposit earns a small but certain return. If she instead opens a new café, she can insure the building against fire (an <b>insurable risk</b>), but nobody can insure her against customers <b>not liking her menu</b> (an <b>uncertainty</b>). According to Knight, the profit she earns if the café succeeds is her <b>reward for bearing this non-insurable uncertainty</b>.`],
+C7:["mix",`The material's own example is the <b>Japanese samurai</b>. They lost their traditional respect and status, and in trying to regain it they became active in business and produced many entrepreneurs. Similarly, a family that migrates to a new city and does not receive the respect it expected may start a business to <b>rebuild its identity and status</b>, which is Hagen's "innovator" response.`],
+C8:["mat",`The material notes that communities such as the <b>Parsees, Marwaris and Gujaratis in India</b>, the samurai in Japan and the Halai Memons in Pakistan have served as foundations of entrepreneurship. In such communities, business is a respected, expected role. Children grow up seeing trade as honourable, which is Cochran's <b>"model personality"</b> formed by cultural values and role expectations.`],
+C9:["ill",`A young person from a migrant community opens a textile shop. Relatives lend money and refer customers because of <b>trust (social networks)</b>. Her earlier job in a shop gave her experience (<b>life course stage</b>), and her community's difficult background pushes her to succeed (<b>ethnic identification</b>). But local rules, rent, competitors and customers decide whether the shop survives (<b>population ecology</b>).`],
+C10:["ill",`When smartphones and cheap mobile internet spread, some people <b>perceived</b> that busy customers wanted meals delivered. They <b>discovered</b> a fit between this need and the unused capacity of local restaurants, and <b>created</b> a business concept: an app connecting them. They did not create the smartphone change; they <b>responded to it and exploited it</b>, as Drucker says.`],
+C11:["ill",`A trader notices that a handmade product sells cheaply in a small town but at a much higher price in a big city, a gap that others overlooked. By buying in the town and selling in the city, he earns a profit and also brings the two prices closer together. This is Kirzner's <b>entrepreneurial alertness</b>: the "antenna" that spots price differences and market imperfections.`],
+C12:["ill",`A bakery has ovens (<b>physical resources</b>), trained bakers (<b>human resources</b>), savings (<b>financial</b>) and a good local name (<b>reputational</b>). By baking the same recipes every day in a fixed routine, the team becomes faster and more consistent (<b>routines and economies of experience</b>). This <b>capability</b> is hard for a new competitor to copy, so it becomes the bakery's competitive advantage.`],
+C13:["mix",`The material's own example is cooking with <b>whatever ingredients are at hand</b> rather than buying ingredients for a fixed menu. In business, a college student with a laptop, design skills and a few friends does not wait to write a perfect plan. She starts freelance design using what she has, limits her spending to what she can <b>afford to lose</b>, and partners with a friend who does marketing. The business grows from the means available.`],
+C14:["ill",`A roadside tea stall owner with little money uses old wooden crates as seats, takes orders on WhatsApp and borrows a friend's bike for delivery. Instead of complaining about lack of resources, he <b>improvises with whatever is available</b>, and over time his stall grows. This is entrepreneurial <b>bricolage</b>, which the material says is common in microbusinesses and SMEs.`],
+D1:["mat",`The material itself gives real examples: a <b>local milk kiosk, grocery store or salon</b> (small business), <b>Apple and Samsung</b> (large company), <b>Tesla and the iPhone</b> (innovation), <b>fast food restaurants</b> (imitative, often franchises), <b>non-profit organisations</b> (social), <b>audiobooks and SaaS software</b> (environmental), and <b>online retail and OTT services</b> (cyber entrepreneurship).`],
+D2:["mix",`The material gives <b>Tesla and the iPhone</b> as innovation entrepreneurship: novel products that nobody had offered in that form before. A <b>researcher entrepreneur</b> is like a person who, before opening a gym, surveys the neighbourhood, counts nearby competitors, studies membership prices and prepares a detailed plan, depending on <b>data rather than gut feeling</b>.`],
+D3:["ill",`Picture a young founder who starts a small organic food brand. She sets tough sales goals and tracks them (<b>need for achievement</b>). She believes her own effort decides the result (<b>internal locus of control</b>) and invests her savings (<b>risk-taking</b>). She designs new eco-friendly packaging (<b>innovativeness</b>) and leads a small team with confidence (<b>self-confidence and leadership</b>). Each action shows one trait from the answer.`],
+D4:["ill",`One person starts a business because she wants to <b>prove she can build something big</b> (need for achievement). Another, whose family migrated and lost its social standing, starts a shop to <b>regain respect</b> (status withdrawal). A third notices that online classes became popular and <b>seizes the change as an opportunity</b>. All of them are encouraged when a bank loan, training programme or government scheme is available (<b>supportive environment</b>).`],
+E1:["ill",`Riya notices that her college area has no healthy snack shop (<b>1. identify and evaluate the opportunity</b>). She writes a plan with her vision, menu, costs and capital needed (<b>2. business plan</b>). She arranges a bank loan and hires two helpers (<b>3. resources</b>). She opens the shop and decides who handles purchase, cooking and billing (<b>4. manage the enterprise</b>). After a year she compares actual and planned sales and decides to <b>open a second outlet</b> (<b>5. harvesting</b>). Later she repeats the process for a new juice brand.`],
+E2:["ill",`<i>(Illustrates only the related evaluation questions from the material, not "screening techniques".)</i> Before opening a juice bar near a college, a person asks: Is it <b>worth investing in</b>? Will students find it <b>attractive</b>? Is it <b>feasible</b> to get fresh fruit daily? Do I have a <b>competitive advantage</b> over the canteen? What is the <b>risk</b> if students go home during vacations?`],
+F1:["mat",`The material gives two clear examples. A <b>furniture maker</b> who arranges capital and skilled labour will still fail if <b>no timber</b> is available nearby (economic factor: raw material). A <b>small horticulturist in a hill town</b> may leave the business if there is no cold store, but a proper warehouse or cold store <b>boosts such enterprises</b> (other factor: infrastructure). In India, the government's <b>MSMED Act 2006</b> and MSME ministry show the government factor.`],
+F2:["mat",`From the material: a <b>furniture house</b> fails without nearby <b>timber</b> (raw material). <b>Japan and the USA</b> solved labour problems through labour-saving technology (labour). The rapid development of markets increased the number of entrepreneurs in <b>Germany and Japan</b> (market). Entrepreneurship grows with the supply of capital, as in the <b>USA, China, Russia and France</b> (capital).`],
+F3:["mix",`The material notes that when <b>young, educated people move out of a region and later return</b>, entrepreneurship grows there (social mobility). For example, a youth who works in a city for some years and returns to his village may open a repair shop or dairy unit with the skills he learned. In a community where running a business is <b>respected</b> (high legitimacy) and members <b>support each other</b> (solidarity), more people take up entrepreneurship.`],
+F4:["mat",`The material explains that <b>Japan experienced high growth in entrepreneurship</b> after status respect was withdrawn from the <b>samurai group</b>, which pushed them towards innovation and creativity (status respect). It also notes that the need for high achievement <b>can be developed through training</b>, so an entrepreneurship training programme that builds motivation is a real-life way this psychological factor is strengthened.`],
+F5:["mat",`The material shows that the <b>Protestant ethic</b> of the West helped create a new generation of industrialists, and that communities such as the <b>Parsees, Marwaris and Gujaratis in India</b> have been foundations of entrepreneurship. In these cultures, trade and business are valued. Children are raised with values like achievement and self-reliance, so more people naturally choose entrepreneurship.`],
+F6:["mat",`The material's example: a <b>small horticulturist in a hilly town</b> has no cold store or warehouse, so small entrepreneurs slowly leave the business, but <b>building a cold store</b> would boost such enterprises (infrastructure). On the government side, India's <b>MSMED Act 2006</b>, a separate <b>Ministry for MSME</b>, special economic zones and industrial estates create a congenial environment.`],
+G1:["mix",`A tech start-up registers under <b>Startup India</b> to get recognition and bank finance. A school sets up an innovation lab under the <b>Atal Innovation Mission</b>, which the material says works across schools. A rural entrepreneur takes a <b>crop loan or term loan through NABARD</b>, and a small manufacturing unit gets help from <b>SIDBI</b>. Together these show how institutional support reaches different types of entrepreneurs.`],
+G2:["ill",`A food-processing start-up takes a <b>bank loan</b> (financial support), attends a <b>workshop</b> on food safety (training), meets buyers at a <b>trade fair</b> (networking), gets quick <b>online registration</b> (regulatory support), uses a <b>digital billing tool</b> (technical support), consults a <b>lawyer</b> for its brand name (legal), learns <b>digital marketing</b> (marketing support), and finally sells on an <b>e-commerce platform</b> (market access).`],
+G3:["mix",`A small tailoring shop takes a small loan through a <b>Mudra</b>-type scheme or a bank (the material names Mudra Bank). A women's pickle group gets <b>microloans through a self-help group</b>. A tech start-up first raises money from an <b>angel investor</b> for a share in the company, and later from a <b>venture capital firm</b> in exchange for equity. A green-energy firm may attract an <b>impact investor</b> who wants both profit and environmental benefit.`],
+G4:["mix",`A student team with a new water-filter design joins a <b>university incubator</b> for lab space and mentoring, and applies for an <b>R&amp;D grant</b> to build its prototype. Meanwhile, a handicraft seller in a village uses <b>digital payments and an e-commerce platform</b> to sell across India. The material links this to <b>Digital India</b>, which helps rural entrepreneurs access technology.`],
+G5:["ill",`A support programme for young founders gives them <b>mentors to shape new ideas</b> (promote innovation), <b>training in accounts and leadership</b> (capacity building), connects them to <b>loans and investors</b> (funding), helps with <b>marketing and legal work</b> (business growth), and gives extra support to <b>women-led and eco-friendly ventures</b> (inclusive and sustainable practices).`],
+G6:["ill",`When one start-up opens a small factory in a town and hires 50 local people, it creates <b>jobs</b> and <b>economic activity</b>: workers spend their salaries, and suppliers get orders. A rural artisan selling handicrafts online earns more <b>without migrating to a city</b>. A woman who gets a loan under a scheme like Stand-Up India becomes an employer instead of a job-seeker. This is how entrepreneurship drives inclusive growth in India.`],
+G7:["mix",`A group of village women form a <b>self-help group</b> and take <b>microloans</b> (the material notes SHGs empower women). They start a pickle business, attend <b>training on packaging and digital marketing</b>, get <b>guidance from a mentor</b>, and sell not only in their village but also in nearby towns and online (<b>market diversification</b>). Simplified registration makes their business formal. All these supports keep the business running for years.`],
+H1:["ill",`Two founders build a promising app but need money to grow. A venture capital firm invests a large amount of <b>equity</b> and in return takes a share of ownership, so the founders now own less and must consult the investor on big decisions (<b>dilution of ownership and control</b>). Before investing, the firm studied their <b>detailed business plan</b> for months (<b>long process</b>), and it plans to sell its share after a few years to earn a <b>capital gain</b> (<b>early redemption</b>).`],
+H2:["ill",`A clean-energy start-up receives venture capital. The VC firm places an experienced person on its board as a <b>nominated director</b> (guidance) and introduces the founders to large buyers and suppliers (<b>networks</b>). The money lets it take on a risky new product (<b>opportunity</b>). If the product fails and the company closes, the founders <b>do not have to repay</b> the VC like a bank loan (<b>no obligation</b>).`],
+H3:["ill",`For a young biotech start-up, venture capital is attractive: it brings <b>large funds, expert guidance and contacts</b>, with <b>no repayment</b> if the venture fails. But the founders must give up a <b>share of ownership and control</b>, go through a <b>long evaluation</b> of their business plan, and accept that the investor may <b>exit within 3 to 5 years</b>. The founders must weigh these pros and cons before accepting VC.`],
+H4:["mix",`A team of engineers develops an <b>energy-saving device</b> (the material mentions energy conservation as a VC industry). They are <b>technically qualified and capable</b> but lack money. A venture capitalist invests because the <b>innovation</b> could give <b>high returns</b>, while accepting the <b>high risk</b> that it may fail. The investment stays <b>locked in for about 3 to 5 years</b> before the investor can exit.`],
+H5:["ill",`A two-year-old mobile app company with a new idea, needing money for day-to-day running and growth, would approach a <b>venture capital</b> fund: early stage, high risk, focus on management skill. A well-established family-owned manufacturing company that is <b>not listed on a stock exchange</b> and wants money to expand into new states would approach a <b>private equity</b> investor: later stage, lower risk, focus on corporate governance.`],
+H6:["ill",`A venture capital fund may be set up as a <b>trust or company</b>. It collects money from a <b>bank</b>, a <b>pension fund</b>, a large <b>corporation</b> and several <b>high net worth individuals</b>, and then invests this pooled money in new technology start-ups. Because the fund owns shares and is not guaranteed any repayment, it <b>bears the business risk</b>. That is why this money is called <b>risk capital</b>.`],
+H7:["ill",`<i>(Illustrates only the related points from the material, not a full "stages" answer.)</i> A student team building a low-cost solar lamp first gets money from an <b>angel investor</b> in exchange for a small share, and a <b>government grant or subsidy</b> that does not have to be repaid. As the idea shows promise, a <b>venture capital firm</b> invests equity at this <b>initial stage</b> to cover day-to-day operations and growth, accepting <b>high risk</b>.`],
+H8:["ill",`<i>(Illustrates only the related points from the material, not a full "stages" answer.)</i> Years later, the same solar lamp company is profitable and wants to expand to new states. At this <b>later stage</b>, it may take money from a <b>private equity investor</b> for <b>business expansion and growth</b>, with <b>lower risk</b> and a focus on <b>corporate governance</b>. The early venture capital investor may now <b>redeem its investment</b> to earn a capital gain.`]
+};
+
+function keyMarks(h){
+  const ms=[...h.matchAll(/<mark>([\s\S]*?)<\/mark>/g)].map(m=>m[1]);
+  const keep=new Set();
+  const byLen=[...new Set(ms)].sort((a,b)=>b.replace(/<[^>]+>/g,'').length-a.replace(/<[^>]+>/g,'').length);
+  if(byLen[0] && byLen[0].replace(/<[^>]+>/g,'').length>=25) keep.add(byLen[0]);
+  if(byLen[1] && byLen[1].replace(/<[^>]+>/g,'').length>=70) keep.add(byLen[1]);
+  const done=new Set();
+  return h.replace(/<mark>([\s\S]*?)<\/mark>/g,(m,x)=>{ if(keep.has(x)&&!done.has(x)){done.add(x);return m;} return x; });
+}
+function addExample(h,id){
+  const e=EX[id]; if(!e) return h;
+  const block=`<h4 class="exh">Real-World Example <span class="tag ${EXL[e[0]][0]}">${EXL[e[0]][1]}</span></h4><p class="ex">${e[1]}</p>`;
+  const i=h.lastIndexOf('<h4>Conclusion</h4>');
+  return i>-1 ? h.slice(0,i)+block+h.slice(i) : h+block;
+}
+function mapRefs(h){ return h.replace(/Q\.\s?([A-H]\d{1,2})\b/g,(m,id)=>NO[id]?`Q.${NO[id]}`:m); }
+function prep(q){ return mapRefs(addExample(keyMarks(q.a()),q.id)); }
+
+const TAGINFO = {imp:["t-imp","TEACHER IMP"], qb:["t-qb","QUESTION BANK"], saq:["t-saq","BOOK Q"], slide:["t-slide","SLIDE Q"]};
+const STL = {full:["t-full","FULL ANSWER"], partial:["t-partial","PARTIAL - COMPILED"], nf:["t-nf","ANSWER NOT FOUND"]};
+const isRep = q => q.tags.includes("imp") && q.tags.includes("qb");
+const isHP  = q => isRep(q) || ((q.tags.includes("imp")||q.tags.includes("qb")) && q.tags.includes("saq"));
+
+function tags(q){
+  let h='';
+  if(isHP(q)) h+=`<span class="tag t-hp">HIGH PRIORITY</span>`;
+  if(isRep(q)) h+=`<span class="tag t-rep">REPEATED</span>`;
+  q.tags.forEach(t=>h+=`<span class="tag ${TAGINFO[t][0]}">${TAGINFO[t][1]}</span>`);
+  h+=`<span class="tag ${STL[q.st][0]}">${STL[q.st][1]}</span>`;
+  return h;
+}
+function head(pn, left){ return `<div class="phead"><div>${left||''}</div><div class="pno">Date: <span></span> Page No. <b>${pn}</b></div></div>`; }
+
+function build(){
+  let html='', pn=1;
+  const pages = [];
+  // cover
+  pages.push(`<div class="page cover" id="cover">${head(pn++,'')}<div class="pbody">
+    <h1>Entrepreneurship<br>Answer Notebook</h1>
+    <div class="sub">EBD &middot; Mid-Term Preparation &middot; Unit 1 &amp; 3</div>
+    <div class="label">
+      <div><span>Name</span><span></span></div>
+      <div><span>Roll No.</span><span></span></div>
+      <div><span>Subject</span><span>Entrepreneurship (EBD)</span></div>
+      <div><span>Exam</span><span>Mid Term</span></div>
+      <div><span>Answers</span><span>${Q.length} questions &times; 5 marks, each with a diagram</span></div>
+    </div>
+    <div class="instr"><b style="color:var(--red)">Instructions / Legend</b>
+      <ol>
+        <li>Every answer is written <b>only from the uploaded study material</b>. The source file and page are written at the end of each answer.</li>
+        <li><span class="tag t-imp">TEACHER IMP</span> in the handwritten "Imp - Mid Term EBD" note &middot; <span class="tag t-qb">QUESTION BANK</span> in your question bank &middot; <span class="tag t-rep">REPEATED</span> in both &middot; <span class="tag t-saq">BOOK Q</span> a self-assessment question in the PDFs &middot; <span class="tag t-hp">HIGH PRIORITY</span> strongest evidence.</li>
+        <li><span class="tag t-nf">ANSWER NOT FOUND</span> means the material does not contain the answer; related points are shown and labelled.</li>
+        <li><b>Practice mode</b> (open the menu at the top left) blurs the answers; click a page to reveal it.</li>
+      </ol></div>
+  </div></div>`);
+  // index (number pages)
+  const qStart = pn + 2; // after index + question paper
+  Q.forEach((q,i)=>q.pn = qStart + i);
+  const endPn = qStart + Q.length;
+  let rows='', lastS='', partB=false;
+  rows+=`<tr><td colspan="4" style="color:var(--red);background:#fff4f4">PART A &ndash; Question Bank Questions (Must Do)</td></tr>`;
+  Q.forEach((q,i)=>{
+    if(!q.must){
+      if(!partB){ rows+=`<tr><td colspan="4" style="color:var(--red);background:#fff4f4">PART B &ndash; Additional Questions</td></tr>`; partB=true; }
+      if(q.s!==lastS){ rows+=`<tr><td colspan="4" style="color:var(--ink2)">${SECTIONS[q.s]}</td></tr>`; lastS=q.s; }
+    }
+    rows+=`<tr data-id="${q.id}"><td>${q.no}</td><td><a href="#p-${q.id}">${q.q}</a></td><td style="text-align:center">${q.pn}</td><td>${isHP(q)?'<span class="tag t-hp">HP</span>':''}${q.st==='nf'?' <span class="tag t-nf">NF</span>':q.st==='partial'?' <span class="tag t-partial">P</span>':''}</td></tr>`;
+  });
+  pages.push(`<div class="page idx" id="index">${head(pn++,'')}<div class="pbody">
+    <h3 style="text-align:center;color:var(--red);font-family:Caveat,cursive;font-size:34px">INDEX</h3>
+    <table><tr><th style="width:44px">Q.</th><th>Question (5 marks each)</th><th style="width:60px">Page</th><th style="width:74px">Remark</th></tr>${rows}
+    <tr><td>-</td><td><a href="#gaps">Not found in material &amp; sources</a></td><td style="text-align:center">${endPn}</td><td></td></tr></table>
+  </div></div>`);
+  // question paper
+  const qp = ids => ids.map(id=>{const q=Q.find(x=>x.id===id);return `<li>${q.q} <span style="float:right">[5]</span><a href="#p-${id}">&rarr; Q.${q.no}, p.${q.pn}</a></li>`;}).join('');
+  pages.push(`<div class="page qp" id="qpaper">${head(pn++,'')}<div class="pbody">
+    <h2>MID-TERM EXAMINATION<br>ENTREPRENEURSHIP (EBD)</h2>
+    <div style="display:flex;justify-content:space-between"><span>Time: 2 Hours</span><span>Max. Marks: 40</span></div>
+    <div class="rule"></div>
+    <p><b>Note:</b> Attempt any EIGHT questions. All questions carry equal marks. Draw diagrams wherever necessary.</p>
+    <div class="rule"></div>
+    <ol>${qp(MUST.filter(id=>!["H7","H8"].includes(id)))}</ol>
+    <div class="rule"></div>
+    <p style="font-size:13px">Questions built only from your Question Bank and the teacher's IMP list. "Early stages" and "Later stages" of financing are left out because their answers are not in the uploaded material.</p>
+    <p style="text-align:center">*** END OF QUESTION PAPER ***</p>
+  </div></div>`);
+  pn = qStart;
+  // answers
+  Q.forEach(q=>{
+    pages.push(`<div class="page qpage" id="p-${q.id}" data-id="${q.id}">${head(q.pn,`<span style="color:var(--red)">${q.must?'Part A &middot; Question Bank':'Part B &middot; '+SECTIONS[q.s].replace(/^Chapter \d+: /,'')}</span>`)}<div class="pbody">
+      <div class="qline"><span class="qn">Q.${q.no}</span><span>${q.q}</span><span class="marks">5 Marks</span></div>
+      <div class="tags">${tags(q)}</div>
+      <div class="ansl">Ans.</div>
+      <div class="ans ans-body">${prep(q)}</div>
+      <div class="src"><b>Source:</b> ${q.src}</div>
+      <div class="end">&mdash;&mdash; x &mdash;&mdash;</div>
+    </div></div>`);
+  });
+  // gaps page
+  const g = Q.filter(q=>q.st!=='full').map(q=>`<li><a href="#p-${q.id}" style="color:var(--ink)">Q.${q.no} ${q.q}</a> <span class="tag ${STL[q.st][0]}">${STL[q.st][1]}</span></li>`).join('');
+  pages.push(`<div class="page" id="gaps">${head(endPn,'')}<div class="pbody">
+    <h3 style="color:var(--red);font-family:Caveat,cursive;font-size:32px">Not Found / Partial in Material</h3>
+    <ol>${g}</ol>
+    <p class="warn">To complete these, upload notes on: Stages of Venture Financing (early and later), Idea Screening Techniques, and Entrepreneurial Traits.</p>
+    <h3 style="color:var(--red);font-family:Caveat,cursive;font-size:32px">Source Files Used</h3>
+    <ol>
+      <li>Unit-1 part 1.pdf: Unit 1 text (evolution, theories, types)</li>
+      <li>Introduction to Entrepreneurship (1).pdf: slides by Ms. Swati Kamra</li>
+      <li>Process of entrpreenurship.pdf: 5-step process</li>
+      <li>factors.pdf: Module 11, factors affecting entrepreneurship</li>
+      <li>Unit 2 ENTREPRENEURSHIP SUPPORT SYSTEM.pdf</li>
+      <li>ing.pdf: Financing - Venture Capital slides</li>
+      <li>WhatsApp Image (handwritten Teacher IMP list)</li>
+      <li>Question Bank given in chat</li>
+    </ol>
+  </div></div>`);
+  document.getElementById('book').innerHTML = pages.join('');
+}
+
+/* snap figures/tables to ruled lines */
+function snap(){
+  const lh=32;
+  document.querySelectorAll('.pbody .fig, .pbody table, .pbody .nf, .pbody .warn').forEach(el=>{
+    el.style.marginBottom='0'; el.style.marginTop='0';
+    const h=el.getBoundingClientRect().height;
+    const extra=Math.ceil(h/lh)*lh - h;
+    el.style.marginBottom=extra+'px';
+  });
+  document.querySelectorAll('.pbody .fig').forEach(el=>{ el.style.marginTop=lh/2+'px'; el.style.marginBottom=(parseFloat(el.style.marginBottom)+lh/2)+'px'; });
+}
+
+/* filters */
+function applyFilter(){
+  const term=document.getElementById('search').value.trim().toLowerCase();
+  const fs=document.getElementById('fSection').value, fp=document.getElementById('fPriority').value;
+  let shown=0;
+  Q.forEach(q=>{
+    let ok = (!fs||q.s===fs);
+    if(fp==='hp') ok=ok&&isHP(q);
+    if(fp==='rep') ok=ok&&isRep(q);
+    if(['imp','qb','saq'].includes(fp)) ok=ok&&q.tags.includes(fp);
+    if(fp==='nf') ok=ok&&q.st!=='full';
+    if(term){ const el=document.getElementById('p-'+q.id); ok=ok&&el.textContent.toLowerCase().includes(term); }
+    document.getElementById('p-'+q.id).classList.toggle('hide',!ok);
+    const r=document.querySelector(`#index tr[data-id="${q.id}"]`); if(r) r.style.opacity=ok?1:.35;
+    const l=document.querySelector(`.dlink[data-id="${q.id}"]`); if(l) l.classList.toggle('hide',!ok);
+    if(ok) shown++;
+  });
+  document.querySelectorAll('.dgroup').forEach(g=>{
+    const vis=g.querySelectorAll('.dlink:not(.hide)').length;
+    g.style.display=vis?'':'none'; g.querySelector('.n').textContent=vis;
+  });
+  document.querySelectorAll('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.p===fp));
+  document.getElementById('count').textContent=`${shown} of ${Q.length} answers shown`;
+}
+
+/* ---------- drawer ---------- */
+const openNav=()=>document.body.classList.add('nav-open');
+const closeNav=()=>document.body.classList.remove('nav-open');
+function goto(id){ closeNav(); const el=document.getElementById(id); if(el) setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),120); }
+
+function buildNav(){
+  const nav=document.getElementById('dnav');
+  const link=q=>{
+    const dot=isHP(q)?'hp':q.st==='nf'?'nf':q.st==='partial'?'pt':'';
+    return `<a class="dlink" data-id="${q.id}" href="#p-${q.id}"><span class="id">${q.no}</span><span>${q.q}</span>${dot?`<span class="dot ${dot}"></span>`:''}</a>`;
+  };
+  const group=(title,items,open)=>`<div class="dgroup${open?' open':''}"><button type="button"><span>${title}</span><span><span class="n">${items.length}</span><span class="chev">&rsaquo;</span></span></button><div class="dlist">${items.map(link).join('')}</div></div>`;
+  nav.innerHTML = `<div class="dlabel" style="padding:8px 8px 0">Part A</div>` + group('Question Bank (Must Do)',Q.filter(q=>q.must),true)
+    + `<div class="dlabel" style="padding:14px 8px 0">Part B &middot; Additional</div>`
+    + Object.entries(SECTIONS).map(([k,v])=>{const items=Q.filter(q=>q.s===k&&!q.must);return items.length?group(v.replace(/^Chapter \d+: /,''),items,false):'';}).join('');
+  nav.querySelectorAll('.dgroup > button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+  nav.querySelectorAll('.dlink').forEach(a=>a.onclick=e=>{e.preventDefault();goto('p-'+a.dataset.id);});
+}
+
+build();
+buildNav();
+const fS=document.getElementById('fSection');
+Object.entries(SECTIONS).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v;fS.appendChild(o);});
+['search','fSection','fPriority'].forEach(i=>document.getElementById(i).addEventListener('input',applyFilter));
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{document.getElementById('fPriority').value=b.dataset.p;applyFilter();});
+document.getElementById('openNav').onclick=openNav;
+document.getElementById('closeNav').onclick=closeNav;
+document.getElementById('scrim').onclick=closeNav;
+document.getElementById('openSearch').onclick=()=>{openNav();setTimeout(()=>document.getElementById('search').focus(),200);};
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openNav();setTimeout(()=>document.getElementById('search').focus(),200);}
+  if(e.key==='Escape') closeNav();
+});
+document.getElementById('practice').onclick=function(){
+  document.body.classList.toggle('practice');
+  document.querySelectorAll('.page.reveal').forEach(p=>p.classList.remove('reveal'));
+};
+document.getElementById('book').addEventListener('click',e=>{
+  const p=e.target.closest('.qpage'); if(p && document.body.classList.contains('practice')) p.classList.toggle('reveal');
+});
+document.querySelectorAll('#index a[href^="#p-"], .qp a[href^="#p-"], #gaps a[href^="#p-"]').forEach(a=>a.onclick=e=>{e.preventDefault();goto(a.getAttribute('href').slice(1));});
+
+/* breadcrumb + active link */
+const crumb=document.getElementById('crumb');
+const io=new (window.IntersectionObserver||class{observe(){}})(ents=>{
+  ents.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const el=en.target, id=el.dataset.id;
+    if(id){
+      const q=Q.find(x=>x.id===id);
+      crumb.textContent=`${q.must?'Question Bank':SECTIONS[q.s].replace(/^Chapter \d+: /,'')} / Q.${q.no}`;
+      document.querySelectorAll('.dlink.active').forEach(a=>a.classList.remove('active'));
+      const l=document.querySelector(`.dlink[data-id="${id}"]`); if(l) l.classList.add('active');
+    } else crumb.textContent={cover:'Cover',index:'Index',qpaper:'Question Paper',gaps:'Not in Material'}[el.id]||'';
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('.page').forEach(p=>io.observe(p));
+
+applyFilter();
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(()=>setTimeout(snap,50));
+window.addEventListener('resize',()=>{clearTimeout(window._s);window._s=setTimeout(snap,200);});
+</script>
+</body>
+</html>
